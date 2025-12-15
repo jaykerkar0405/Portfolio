@@ -10,7 +10,8 @@
 .DS_Store
 Thumbs.db
 
-# Dependencies
+# Miscellaneous
+.vscode
 node_modules
 
 # Env
