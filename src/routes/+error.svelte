@@ -50,7 +50,7 @@
 	<Card class="w-full max-w-lg border-border py-7.5 shadow-sm">
 		<CardHeader class="justify-items-center gap-4 pt-2 text-center">
 			{@const Icon = config.icon}
-			<div class="inline-flex size-16 items-center justify-center rounded-full border bg-muted">
+			<div class="inline-flex size-18 items-center justify-center rounded-full border bg-muted">
 				<Icon class="size-9 text-foreground" strokeWidth={1.75} />
 			</div>
 
