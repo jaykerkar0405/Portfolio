@@ -6,13 +6,14 @@ This is a **Svelte 5 + SvelteKit** portfolio site using **static adapter** for d
 
 ## Tech Stack & Key Files
 
-| Technology   | Version          | Config File             |
-| ------------ | ---------------- | ----------------------- |
-| Svelte       | 5.x (uses runes) | `svelte.config.js`      |
-| SvelteKit    | 2.x              | `svelte.config.js`      |
-| Tailwind CSS | 4.x              | `src/routes/layout.css` |
-| mdsvex       | 0.12.x           | `svelte.config.js`      |
-| TypeScript   | 5.x              | `tsconfig.json`         |
+| Technology    | Version          | Config File             |
+| ------------- | ---------------- | ----------------------- |
+| Svelte        | 5.x (uses runes) | `svelte.config.js`      |
+| SvelteKit     | 2.x              | `svelte.config.js`      |
+| Tailwind CSS  | 4.x              | `src/routes/layout.css` |
+| shadcn/svelte | latest           | `components.json`       |
+| mdsvex        | 0.12.x           | `svelte.config.js`      |
+| TypeScript    | 5.x              | `tsconfig.json`         |
 
 ## Architecture
 
@@ -54,6 +55,26 @@ Tailwind is configured via Vite plugin in `vite.config.ts`. Global styles in `sr
 ```
 
 Use Tailwind utility classes directly in components. Typography plugin available for prose content.
+
+## Package Manager
+
+**ALWAYS use `pnpm` for all package management tasks.** Do NOT use `npm` or `yarn`.
+
+### Installing Dependencies
+
+```bash
+pnpm install      # Install all dependencies
+pnpm add <pkg>    # Add a new package
+```
+
+### shadcn/svelte Components
+
+This project uses **shadcn/svelte** (NOT the regular shadcn/ui). Add components using:
+
+```bash
+pnpm dlx shadcn-svelte@latest add <component>
+# Example: pnpm dlx shadcn-svelte@latest add button
+```
 
 ## Developer Commands
 
