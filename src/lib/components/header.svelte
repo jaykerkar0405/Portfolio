@@ -4,16 +4,8 @@
 	import { scale } from 'svelte/transition';
 	import SunIcon from '@lucide/svelte/icons/sun';
 	import MoonIcon from '@lucide/svelte/icons/moon';
-	import HomeIcon from '@lucide/svelte/icons/home';
 	import { Button } from '$lib/components/ui/button';
-	import TrophyIcon from '@lucide/svelte/icons/trophy';
-	import FolderKanbanIcon from '@lucide/svelte/icons/folder-kanban';
-
-	const navigationItems = [
-		{ label: 'Home', href: '/', icon: HomeIcon },
-		{ label: 'Projects', href: '/projects', icon: FolderKanbanIcon },
-		{ label: 'Hackathons', href: '/hackathons', icon: TrophyIcon }
-	];
+	import { navigationItems } from '$lib/config/navigation';
 
 	const isActive = (href: string) => {
 		if (href === '/') {
