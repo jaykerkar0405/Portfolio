@@ -18,7 +18,7 @@
 <header
 	class="sticky top-0 z-50 w-full border-b-2 bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60"
 >
-	<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-16 xl:px-8">
+	<div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-6 md:px-16 xl:px-6">
 		<a href="/" class="flex items-center gap-2.5">
 			<img src="/icons/apple-touch-icon.png" alt="Logo" class="size-8 rounded-lg" />
 			<span class="text-lg font-bold">Jay Kerkar</span>
