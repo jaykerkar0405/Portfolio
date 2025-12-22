@@ -55,21 +55,21 @@
 	</div>
 </header>
 
-<div class="fixed bottom-0 left-0 z-50 h-24 w-full border-t-2 bg-background lg:hidden">
+<div class="fixed bottom-0 left-0 z-50 h-20 w-full border-t-2 bg-background lg:hidden">
 	<div class="mx-auto grid h-full max-w-lg grid-cols-3 font-medium">
 		{#each navigationItems as item (item.href)}
 			<a
 				href={item.href}
-				class="inline-flex flex-col items-center justify-center gap-2 px-5 transition-colors duration-150 ease-out {isActive(
+				class="inline-flex flex-col items-center justify-center gap-0.5 px-5 py-2 transition-colors duration-150 ease-out {isActive(
 					item.href
 				)
 					? 'bg-primary text-primary-foreground'
 					: 'hover:bg-primary hover:text-primary-foreground'}"
 			>
-				<span class="size-5">
+				<span class="flex size-5.5 items-center justify-center">
 					<svelte:component this={item.icon} />
 				</span>
-				<span class="ml-1 text-sm">{item.label}</span>
+				<span class="text-[0.85rem]">{item.label}</span>
 			</a>
 		{/each}
 	</div>
