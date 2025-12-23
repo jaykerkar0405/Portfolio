@@ -147,19 +147,10 @@
 				<Card class="flex-1">
 					<CardContent class="px-8 py-2">
 						<h3 class="mb-4 text-xl font-semibold">What I'm Learning Now</h3>
-						<ul class="space-y-2 text-muted-foreground">
-							<li class="flex items-center gap-2">
-								<span class="size-1.5 shrink-0 rounded-full bg-primary"></span>
-								<span>Agentic AI systems and workflows</span>
-							</li>
-							<li class="flex items-center gap-2">
-								<span class="size-1.5 shrink-0 rounded-full bg-primary"></span>
-								<span>Ethereum fundamentals and protocol basics</span>
-							</li>
-							<li class="flex items-center gap-2">
-								<span class="size-1.5 shrink-0 rounded-full bg-primary"></span>
-								<span>Zero-knowledge proofs and ZK systems</span>
-							</li>
+						<ul class="ml-4 list-outside list-disc space-y-3 text-muted-foreground marker:text-primary">
+							<li class="pl-0.5">Agentic AI systems and workflows</li>
+							<li class="pl-0.5">Ethereum fundamentals and protocol basics</li>
+							<li class="pl-0.5">Zero-knowledge proofs and ZK systems</li>
 						</ul>
 					</CardContent>
 				</Card>
