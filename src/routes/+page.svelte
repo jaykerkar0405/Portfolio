@@ -14,8 +14,8 @@
 	const achievements = [
 		'$ achievements --list',
 		'🏆 ETHOnline 2025 | Winner — Top 10 / 634 projects (Global)',
-		'🥇 HackByte 3.0   | Top 10 — 125 teams (Central India)',
-		'🥈 Hackx 3.0       | Runner-up — NMIMS Navi Mumbai'
+		'🥇 HackByte 3.0 | Top 10 — 125 teams (Central India)',
+		'🥈 Hackx 3.0 | Runner-up — NMIMS Navi Mumbai'
 	];
 
 	let currentLine = $state(0);
@@ -93,9 +93,10 @@
 						<div class="size-3 rounded-full bg-yellow-500"></div>
 						<div class="size-3 rounded-full bg-green-500"></div>
 					</div>
-					<div class="flex-1 p-8">
-						<pre class="font-mono text-sm leading-relaxed text-foreground">{displayedText}<span class="animate-pulse"
-								>▊</span
+					<div class="flex-1 p-4 md:p-8">
+						<pre
+							class="wrap-break-words min-h-35 font-mono text-xs leading-relaxed whitespace-pre-wrap text-foreground sm:text-sm">{displayedText}<span
+								class="animate-pulse">▊</span
 							></pre>
 					</div>
 				</div>
