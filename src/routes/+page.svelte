@@ -120,4 +120,66 @@
 			</a>
 		{/each}
 	</div>
+
+	<div class="mt-16">
+		<h2 class="mb-8 text-3xl font-bold">About</h2>
+		<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+			<Card>
+				<CardContent class="px-8 py-2">
+					<h3 class="mb-4 text-xl font-semibold">My Approach</h3>
+					<div class="space-y-4 leading-relaxed text-muted-foreground">
+						<p>
+							I'm a hackathon-driven developer who has participated in multiple national and global hackathons, building
+							under real constraints and tight timelines.
+						</p>
+						<p>
+							Earlier, I focused on building projects blindly for learning. Now, I intentionally design projects around
+							real problems faced by people, aiming for practical impact.
+						</p>
+						<p>
+							I strongly value quality code over quantity - writing clean, maintainable systems that scale beyond demos.
+						</p>
+					</div>
+				</CardContent>
+			</Card>
+
+			<div class="flex flex-col gap-6">
+				<Card class="flex-1">
+					<CardContent class="px-8 py-2">
+						<h3 class="mb-4 text-xl font-semibold">What I'm Learning Now</h3>
+						<ul class="space-y-2 text-muted-foreground">
+							<li class="flex items-center gap-2">
+								<span class="size-1.5 shrink-0 rounded-full bg-primary"></span>
+								<span>Agentic AI systems and workflows</span>
+							</li>
+							<li class="flex items-center gap-2">
+								<span class="size-1.5 shrink-0 rounded-full bg-primary"></span>
+								<span>Ethereum fundamentals and protocol basics</span>
+							</li>
+							<li class="flex items-center gap-2">
+								<span class="size-1.5 shrink-0 rounded-full bg-primary"></span>
+								<span>Zero-knowledge proofs and ZK systems</span>
+							</li>
+						</ul>
+					</CardContent>
+				</Card>
+
+				<Card class="flex-1">
+					<CardContent class="px-8 py-2">
+						<h3 class="mb-4 text-xl font-semibold">Education</h3>
+						<div class="flex items-start justify-between gap-4">
+							<div class="space-y-2">
+								<p class="font-medium">VES Institute of Technology</p>
+								<p class="text-sm text-muted-foreground">Bachelor of Engineering - Information Technology</p>
+							</div>
+							<div class="shrink-0 space-y-2 text-right">
+								<p class="text-sm text-muted-foreground">2023 - 2027</p>
+								<p class="text-sm font-medium">CGPA: 9.87 / 10</p>
+							</div>
+						</div>
+					</CardContent>
+				</Card>
+			</div>
+		</div>
+	</div>
 </div>
