@@ -19,7 +19,8 @@ export default defineConfig(
 	...svelte.configs.prettier,
 	{
 		rules: {
-			'no-undef': 'off'
+			'no-undef': 'off',
+			'svelte/no-navigation-without-resolve': ['error', { ignoreLinks: true }]
 		},
 		languageOptions: { globals: { ...globals.browser, ...globals.node } },
 	},
