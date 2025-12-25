@@ -13,7 +13,7 @@
 		siTailwindcss
 	} from 'simple-icons';
 	import { onMount } from 'svelte';
-	import { MapPin } from 'lucide-svelte';
+	import { MapPin, ChevronDown } from 'lucide-svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { Card, CardContent } from '$lib/components/ui/card';
 
@@ -101,7 +101,7 @@
 </script>
 
 <div class="container mx-auto px-4 py-12">
-	<div class="lg:flex lg:flex-col">
+	<div class="lg:flex lg:min-h-[90vh] lg:flex-col">
 		<div class="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
 			<Card>
 				<CardContent class="p-8">
@@ -250,10 +250,14 @@
 					</div>
 				</a>
 			</div>
+
+			<a href="#about" class="hidden animate-bounce justify-center pt-8 pb-6 lg:flex">
+				<ChevronDown class="size-8 text-muted-foreground" />
+			</a>
 		</div>
 	</div>
 
-	<div class="mt-12 lg:mt-16">
+	<div id="about" class="mt-12 lg:mt-0">
 		<h2 class="mb-8 text-3xl font-bold">About</h2>
 		<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 			<Card>
