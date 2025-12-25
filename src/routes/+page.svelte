@@ -13,9 +13,10 @@
 		siTailwindcss
 	} from 'simple-icons';
 	import { onMount } from 'svelte';
-	import { MapPin, ChevronDown } from 'lucide-svelte';
+	import { Button } from '$lib/components/ui/button';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { Card, CardContent } from '$lib/components/ui/card';
+	import { MapPin, ChevronDown, Download } from 'lucide-svelte';
 
 	type SvgIcon = { viewBox: string; paths: string[] };
 
@@ -275,6 +276,14 @@
 						<p>
 							I strongly value quality code over quantity - writing clean, maintainable systems that scale beyond demos.
 						</p>
+					</div>
+					<div class="mt-6">
+						<a href="/docs/resume.pdf" download="Jay_Kerkar_Resume.pdf">
+							<Button class="gap-2">
+								<Download class="size-4" />
+								Download Resume
+							</Button>
+						</a>
 					</div>
 				</CardContent>
 			</Card>
