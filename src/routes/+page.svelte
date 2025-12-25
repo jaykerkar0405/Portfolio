@@ -1,15 +1,51 @@
 <script lang="ts">
+	import {
+		siReact,
+		siDocker,
+		siPython,
+		siSvelte,
+		siMongodb,
+		siSolidity,
+		siNextdotjs,
+		siTypescript,
+		siJavascript,
+		siPostgresql,
+		siTailwindcss
+	} from 'simple-icons';
 	import { onMount } from 'svelte';
 	import { MapPin } from 'lucide-svelte';
+	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { Card, CardContent } from '$lib/components/ui/card';
 
-	const XIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
+	type SvgIcon = { viewBox: string; paths: string[] };
 
-	const LinkedInIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>`;
+	const XIcon: SvgIcon = {
+		viewBox: '0 0 24 24',
+		paths: [
+			'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z'
+		]
+	};
 
-	const GithubIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>`;
+	const LinkedInIcon: SvgIcon = {
+		viewBox: '0 0 24 24',
+		paths: [
+			'M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z'
+		]
+	};
 
-	const LeetCodeIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>`;
+	const GithubIcon: SvgIcon = {
+		viewBox: '0 0 24 24',
+		paths: [
+			'M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z'
+		]
+	};
+
+	const LeetCodeIcon: SvgIcon = {
+		viewBox: '0 0 24 24',
+		paths: [
+			'M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z'
+		]
+	};
 
 	const achievements = [
 		'$ achievements --list',
@@ -41,87 +77,183 @@
 		return () => clearInterval(typeEffect);
 	});
 
-	const socialLinks = [
-		{
-			name: 'GitHub',
-			icon: GithubIcon,
-			username: 'jaykerkar0405',
-			url: 'https://github.com/jaykerkar0405'
-		},
-		{
-			name: 'LinkedIn',
-			icon: LinkedInIcon,
-			username: 'jaykerkar0405',
-			url: 'https://in.linkedin.com/in/jaykerkar0405'
-		},
-		{
-			name: 'X',
-			icon: XIcon,
-			username: '@jaykerkar0405',
-			url: 'https://x.com/jaykerkar0405'
-		},
-		{
-			name: 'LeetCode',
-			icon: LeetCodeIcon,
-			username: 'jaykerkar0405',
-			url: 'https://leetcode.com/u/jaykerkar0405'
-		}
+	type BrandIcon = { title: string; hex: string; path: string };
+
+	const brandColor = (hex: string) => {
+		const normalized = hex.toLowerCase();
+		if (normalized === '000000' || normalized === 'ffffff') return 'currentColor';
+		return `#${hex}`;
+	};
+
+	const techStack: { name: string; icon: BrandIcon }[] = [
+		{ name: 'TypeScript', icon: siTypescript },
+		{ name: 'JavaScript', icon: siJavascript },
+		{ name: 'Solidity', icon: siSolidity },
+		{ name: 'React', icon: siReact },
+		{ name: 'Next.js', icon: siNextdotjs },
+		{ name: 'Tailwind CSS', icon: siTailwindcss },
+		{ name: 'PostgreSQL', icon: siPostgresql },
+		{ name: 'MongoDB', icon: siMongodb },
+		{ name: 'Docker', icon: siDocker },
+		{ name: 'SvelteKit', icon: siSvelte },
+		{ name: 'Python', icon: siPython }
 	];
 </script>
 
 <div class="container mx-auto px-4 py-12">
-	<div class="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-		<Card>
-			<CardContent class="p-8">
-				<h1 class="mb-4 text-4xl font-bold">Hi, I&apos;m Jay Kerkar</h1>
-				<div class="mb-6 flex items-center gap-2 text-muted-foreground">
-					<MapPin class="size-5" />
-					<span>Mumbai, India</span>
-				</div>
-				<p class="text-lg leading-relaxed text-muted-foreground">
-					Full-stack developer specializing in scalable web applications, mobile development, and Web3 solutions.
-					Explore my projects, hackathon wins, and technical expertise in modern frameworks.
-				</p>
-			</CardContent>
-		</Card>
+	<div class="lg:flex lg:flex-col">
+		<div class="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
+			<Card>
+				<CardContent class="p-8">
+					<h1 class="mb-4 text-4xl font-bold">Hi, I&apos;m Jay Kerkar</h1>
+					<div class="mb-6 flex items-center gap-2 text-muted-foreground">
+						<MapPin class="size-5" />
+						<span>Mumbai, India</span>
+					</div>
+					<p class="text-lg leading-relaxed text-muted-foreground">
+						Full-stack developer specializing in scalable web applications, mobile development, and Web3 solutions.
+						Explore my projects, hackathon wins, and technical expertise in modern frameworks.
+					</p>
+				</CardContent>
+			</Card>
 
-		<Card class="flex h-full flex-col py-0">
-			<CardContent class="flex flex-1 flex-col p-0">
-				<div class="flex h-full flex-col overflow-hidden rounded-lg bg-secondary/30">
-					<div class="flex items-center gap-2 border-b border-border bg-secondary/50 px-4 py-3">
-						<div class="size-3 rounded-full bg-red-500"></div>
-						<div class="size-3 rounded-full bg-yellow-500"></div>
-						<div class="size-3 rounded-full bg-green-500"></div>
+			<Card class="flex h-full flex-col py-0">
+				<CardContent class="flex flex-1 flex-col p-0">
+					<div class="flex h-full flex-col overflow-hidden rounded-lg bg-secondary/30">
+						<div class="flex items-center gap-2 border-b border-border bg-secondary/50 px-4 py-3">
+							<div class="size-3 rounded-full bg-red-500"></div>
+							<div class="size-3 rounded-full bg-yellow-500"></div>
+							<div class="size-3 rounded-full bg-green-500"></div>
+						</div>
+						<div class="flex-1 p-4 md:p-8">
+							<pre
+								class="wrap-break-words min-h-35 font-mono text-xs leading-relaxed whitespace-pre-wrap text-foreground sm:text-sm">{displayedText}<span
+									class="animate-pulse">▊</span
+								></pre>
+						</div>
 					</div>
-					<div class="flex-1 p-4 md:p-8">
-						<pre
-							class="wrap-break-words min-h-35 font-mono text-xs leading-relaxed whitespace-pre-wrap text-foreground sm:text-sm">{displayedText}<span
-								class="animate-pulse">▊</span
-							></pre>
+				</CardContent>
+			</Card>
+		</div>
+
+		<div class="space-y-6 lg:space-y-8">
+			<div class="flex justify-center">
+				<div class="w-full overflow-x-auto rounded-2xl border border-border bg-card">
+					<div class="flex min-h-20 items-center justify-between px-4">
+						{#each techStack as tech (tech.name)}
+							<Tooltip.Root>
+								<Tooltip.Trigger class="flex size-14 shrink-0 items-center justify-center rounded-lg">
+									<svg
+										width="40"
+										height="40"
+										viewBox="0 0 24 24"
+										fill="currentColor"
+										xmlns="http://www.w3.org/2000/svg"
+										style="color: {brandColor(tech.icon.hex)}"
+									>
+										<path d={tech.icon.path} />
+									</svg>
+								</Tooltip.Trigger>
+								<Tooltip.Content>
+									<p class="font-medium">{tech.name}</p>
+								</Tooltip.Content>
+							</Tooltip.Root>
+						{/each}
 					</div>
 				</div>
-			</CardContent>
-		</Card>
+			</div>
+
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+				<a
+					target="_blank"
+					rel="noopener noreferrer"
+					href="https://github.com/jaykerkar0405"
+					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6 transition-colors"
+				>
+					<svg
+						width="24"
+						height="24"
+						fill="currentColor"
+						viewBox={GithubIcon.viewBox}
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						{#each GithubIcon.paths as d (d)}
+							<path {d} />
+						{/each}
+					</svg>
+					<div>
+						<p class="font-medium">GitHub</p>
+						<p class="text-sm text-muted-foreground">jaykerkar0405</p>
+					</div>
+				</a>
+
+				<a
+					target="_blank"
+					rel="noopener noreferrer"
+					href="https://in.linkedin.com/in/jaykerkar0405"
+					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6 transition-colors"
+				>
+					<svg
+						width="24"
+						height="24"
+						fill="currentColor"
+						viewBox={LinkedInIcon.viewBox}
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						{#each LinkedInIcon.paths as d (d)}
+							<path {d} />
+						{/each}
+					</svg>
+					<div>
+						<p class="font-medium">LinkedIn</p>
+						<p class="text-sm text-muted-foreground">jaykerkar0405</p>
+					</div>
+				</a>
+
+				<a
+					target="_blank"
+					rel="noopener noreferrer"
+					href="https://x.com/jaykerkar0405"
+					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6 transition-colors"
+				>
+					<svg width="24" height="24" fill="currentColor" viewBox={XIcon.viewBox} xmlns="http://www.w3.org/2000/svg">
+						{#each XIcon.paths as d (d)}
+							<path {d} />
+						{/each}
+					</svg>
+					<div>
+						<p class="font-medium">X</p>
+						<p class="text-sm text-muted-foreground">@jaykerkar0405</p>
+					</div>
+				</a>
+
+				<a
+					target="_blank"
+					rel="noopener noreferrer"
+					href="https://leetcode.com/u/jaykerkar0405"
+					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6 transition-colors"
+				>
+					<svg
+						width="24"
+						height="24"
+						fill="currentColor"
+						viewBox={LeetCodeIcon.viewBox}
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						{#each LeetCodeIcon.paths as d (d)}
+							<path {d} />
+						{/each}
+					</svg>
+					<div>
+						<p class="font-medium">LeetCode</p>
+						<p class="text-sm text-muted-foreground">jaykerkar0405</p>
+					</div>
+				</a>
+			</div>
+		</div>
 	</div>
 
-	<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-		{#each socialLinks as social}
-			<a
-				target="_blank"
-				href={social.url}
-				rel="noopener noreferrer"
-				class="flex items-center gap-4 rounded-lg border border-border bg-card p-6 transition-colors"
-			>
-				{@html social.icon}
-				<div>
-					<p class="font-medium">{social.name}</p>
-					<p class="text-sm text-muted-foreground">{social.username}</p>
-				</div>
-			</a>
-		{/each}
-	</div>
-
-	<div class="mt-16">
+	<div class="mt-12 lg:mt-16">
 		<h2 class="mb-8 text-3xl font-bold">About</h2>
 		<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 			<Card>
