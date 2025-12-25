@@ -143,7 +143,10 @@
 					<div class="flex min-h-20 items-center justify-between px-4">
 						{#each techStack as tech (tech.name)}
 							<Tooltip.Root>
-								<Tooltip.Trigger class="flex size-14 shrink-0 items-center justify-center rounded-lg">
+								<Tooltip.Trigger
+									aria-label={tech.name}
+									class="flex size-14 shrink-0 items-center justify-center rounded-lg"
+								>
 									<svg
 										width="40"
 										height="40"
@@ -252,7 +255,11 @@
 				</a>
 			</div>
 
-			<a href="#about" class="hidden animate-bounce justify-center pt-8 pb-6 lg:flex">
+			<a
+				href="#about"
+				aria-label="Scroll to about section"
+				class="hidden animate-bounce justify-center pt-8 pb-6 lg:flex"
+			>
 				<ChevronDown class="size-8 text-muted-foreground" />
 			</a>
 		</div>
