@@ -17,8 +17,8 @@ export interface Project {
 	featured: boolean;
 	githubLink: string;
 	videoLink?: string;
-	deployedLink: string;
 	hackathonId?: string;
+	deployedLink?: string;
 	techStack: TechStack[];
 	shortDescription: string;
 	teamMembers: TeamMember[];
