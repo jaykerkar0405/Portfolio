@@ -15,7 +15,7 @@
 	<Header />
 
 	<Tooltip.Provider>
-		<main class="flex-1">
+		<main class="mx-auto max-w-7xl flex-1">
 			{@render children()}
 		</main>
 	</Tooltip.Provider>
