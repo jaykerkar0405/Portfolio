@@ -87,17 +87,17 @@
 	};
 
 	const techStack: { name: string; icon: BrandIcon }[] = [
+		{ name: 'React', icon: siReact },
+		{ name: 'Python', icon: siPython },
+		{ name: 'Docker', icon: siDocker },
+		{ name: 'MongoDB', icon: siMongodb },
+		{ name: 'SvelteKit', icon: siSvelte },
+		{ name: 'Next.js', icon: siNextdotjs },
+		{ name: 'Solidity', icon: siSolidity },
 		{ name: 'TypeScript', icon: siTypescript },
 		{ name: 'JavaScript', icon: siJavascript },
-		{ name: 'Solidity', icon: siSolidity },
-		{ name: 'React', icon: siReact },
-		{ name: 'Next.js', icon: siNextdotjs },
-		{ name: 'Tailwind CSS', icon: siTailwindcss },
 		{ name: 'PostgreSQL', icon: siPostgresql },
-		{ name: 'MongoDB', icon: siMongodb },
-		{ name: 'Docker', icon: siDocker },
-		{ name: 'SvelteKit', icon: siSvelte },
-		{ name: 'Python', icon: siPython }
+		{ name: 'Tailwind CSS', icon: siTailwindcss }
 	];
 </script>
 
@@ -145,7 +145,7 @@
 							<Tooltip.Root>
 								<Tooltip.Trigger
 									aria-label={tech.name}
-									class="flex size-14 shrink-0 items-center justify-center rounded-lg"
+									class="flex size-14 shrink-0 items-center justify-center rounded-lg transition-transform hover:scale-110"
 								>
 									<svg
 										width="40"
