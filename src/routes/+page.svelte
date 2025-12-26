@@ -102,7 +102,7 @@
 </script>
 
 <div class="container px-4 py-12">
-	<div class="lg:flex lg:min-h-[90vh] lg:flex-col">
+	<div class="lg:flex lg:flex-col">
 		<div class="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
 			<Card>
 				<CardContent class="p-8">
@@ -255,11 +255,7 @@
 				</a>
 			</div>
 
-			<a
-				href="#about"
-				aria-label="Scroll to about section"
-				class="hidden animate-bounce justify-center pt-8 pb-6 lg:flex"
-			>
+			<a href="#about" aria-label="Scroll to about section" class="hidden animate-bounce justify-center py-6 lg:flex">
 				<ChevronDown class="size-8 text-muted-foreground" />
 			</a>
 		</div>
