@@ -14,7 +14,7 @@
 	};
 </script>
 
-<Card class="flex flex-col overflow-hidden py-3.5">
+<Card class="flex flex-col overflow-hidden py-3">
 	<CardContent class="flex flex-1 flex-col gap-5.5 p-6">
 		<div class="flex items-start justify-between gap-4">
 			<div class="flex items-start gap-3">
