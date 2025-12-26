@@ -101,7 +101,7 @@
 	];
 </script>
 
-<div class="container px-4 py-12">
+<div class="container mx-auto max-w-7xl px-4 py-12">
 	<div class="lg:flex lg:flex-col">
 		<div class="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
 			<Card>
