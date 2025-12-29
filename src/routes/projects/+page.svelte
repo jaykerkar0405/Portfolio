@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { projects } from '$lib/data/projects';
+	import { projects } from '$lib/projects';
 	import ProjectCard from '$lib/components/project-card.svelte';
 
 	const otherProjects = projects.filter((p) => !p.featured);
