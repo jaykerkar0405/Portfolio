@@ -1,6 +1,5 @@
 export interface TeamMember {
-	role: string;
-	githubUrl: string;
+	githubUsername: string;
 }
 
 export interface TechStack {
@@ -11,9 +10,7 @@ export interface TechStack {
 
 export interface Project {
 	id: string;
-	icon: string;
 	title: string;
-	images: string[];
 	featured: boolean;
 	githubLink: string;
 	videoLink?: string;
