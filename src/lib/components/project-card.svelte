@@ -18,7 +18,7 @@
 	<CardContent class="flex flex-1 flex-col gap-5.5 p-6">
 		<div class="flex items-start justify-between gap-4">
 			<div class="flex items-start gap-3">
-				<img src={project.icon} alt={project.title} class="size-12 rounded-lg object-cover" />
+				<img src={`/projects/${project.id}/icon.png`} alt={project.title} class="size-12 rounded-lg object-cover" />
 
 				<div class="-mt-1 min-w-0 flex-1">
 					<h3 class="mb-1 text-xl font-bold">{project.title}</h3>
