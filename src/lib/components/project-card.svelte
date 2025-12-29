@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
+	import type { Project } from '$lib/projects/types';
 	import * as Tooltip from '$lib/components/ui/tooltip';
-	import type { Project } from '$lib/data/projects/types';
 	import { Card, CardContent } from '$lib/components/ui/card';
 	import { ExternalLink, Github, Zap, ArrowRight } from 'lucide-svelte';
 
@@ -44,7 +44,7 @@
 		</div>
 
 		<div class="w-full overflow-x-auto rounded-xl border border-border bg-secondary/30">
-			<div class="flex items-center gap-3 px-4 py-3">
+			<div class="flex items-center justify-between gap-3 px-4 py-3">
 				{#each project.techStack as tech (tech.title)}
 					<Tooltip.Root>
 						<Tooltip.Trigger
