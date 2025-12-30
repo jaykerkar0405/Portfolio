@@ -27,8 +27,9 @@ export const load: PageLoad = async ({ params, fetch }) => {
 
 	const screenshots: string[] = [];
 	const screenshotModules = import.meta.glob('/static/projects/*/screenshot-*.png', {
-		as: 'url',
-		eager: true
+		eager: true,
+		query: '?url',
+		import: 'default'
 	});
 
 	Object.keys(screenshotModules)
