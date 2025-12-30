@@ -17,6 +17,9 @@ importers:
       lucide-svelte:
         specifier: ^0.562.0
         version: 0.562.0(svelte@5.46.0)
+      marked:
+        specifier: ^17.0.1
+        version: 17.0.1
       mode-watcher:
         specifier: ^1.1.0
         version: 1.1.0(svelte@5.46.0)
@@ -60,6 +63,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      embla-carousel-svelte:
+        specifier: ^8.6.0
+        version: 8.6.0(svelte@5.46.0)
       eslint:
         specifier: ^9.39.1
         version: 9.39.2(jiti@2.6.1)
@@ -854,6 +860,19 @@ packages:
   devalue@5.6.1:
     resolution: {integrity: sha512-jDwizj+IlEZBunHcOuuFVBnIMPAEHvTsJj0BcIp94xYguLRVBcXO853px/MyIJvbVzWdsGvrRweIUWJw8hBP7A==}
 
+  embla-carousel-reactive-utils@8.6.0:
+    resolution: {integrity: sha512-fMVUDUEx0/uIEDM0Mz3dHznDhfX+znCCDCeIophYb1QGVM7YThSWX+wz11zlYwWFOr74b4QLGg0hrGPJeG2s4A==}
+    peerDependencies:
+      embla-carousel: 8.6.0
+
+  embla-carousel-svelte@8.6.0:
+    resolution: {integrity: sha512-ZDsKk8Sdv+AUTygMYcwZjfRd1DTh+JSUzxkOo8b9iKAkYjg+39mzbY/lwHsE3jXSpKxdKWS69hPSNuzlOGtR2Q==}
+    peerDependencies:
+      svelte: ^3.49.0 || ^4.0.0 || ^5.0.0
+
+  embla-carousel@8.6.0:
+    resolution: {integrity: sha512-SjWyZBHJPbqxHOzckOfo8lHisEaJWmwd23XppYFYVh10bU66/Pn5tkVkbkCMZVdbUE5eTCI2nD8OyIP4Z+uwkA==}
+
   enhanced-resolve@5.18.4:
     resolution: {integrity: sha512-LgQMM4WXU3QI+SYgEc2liRgznaD5ojbmY3sb8LxyguVkIg5FxdpTkvk72te2R38/TGKxH634oLxXRGY6d7AP+Q==}
     engines: {node: '>=10.13.0'}
@@ -1147,6 +1166,11 @@ packages:
 
   magic-string@0.30.21:
     resolution: {integrity: sha512-vd2F4YUyEXKGcLHoq+TEyCjxueSeHnFxyyjNp80yg0XV4vUhnDer/lvvlqM/arB5bXQN5K2/3oinyCRyx8T2CQ==}
+
+  marked@17.0.1:
+    resolution: {integrity: sha512-boeBdiS0ghpWcSwoNm/jJBwdpFaMnZWRzjA6SkUMYb40SVaN1x7mmfGKp0jvexGcx+7y2La5zRZsYFZI6Qpypg==}
+    engines: {node: '>= 20'}
+    hasBin: true
 
   mdsvex@0.12.6:
     resolution: {integrity: sha512-pupx2gzWh3hDtm/iDW4WuCpljmyHbHi34r7ktOqpPGvyiM4MyfNgdJ3qMizXdgCErmvYC9Nn/qyjePy+4ss9Wg==}
@@ -2176,6 +2200,18 @@ snapshots:
 
   devalue@5.6.1: {}
 
+  embla-carousel-reactive-utils@8.6.0(embla-carousel@8.6.0):
+    dependencies:
+      embla-carousel: 8.6.0
+
+  embla-carousel-svelte@8.6.0(svelte@5.46.0):
+    dependencies:
+      embla-carousel: 8.6.0
+      embla-carousel-reactive-utils: 8.6.0(embla-carousel@8.6.0)
+      svelte: 5.46.0
+
+  embla-carousel@8.6.0: {}
+
   enhanced-resolve@5.18.4:
     dependencies:
       graceful-fs: 4.2.11
@@ -2467,6 +2503,8 @@ snapshots:
   magic-string@0.30.21:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.5
+
+  marked@17.0.1: {}
 
   mdsvex@0.12.6(svelte@5.46.0):
     dependencies:
