@@ -6,6 +6,10 @@
 	const featuredProjects = projects.filter((p) => p.featured);
 </script>
 
+<svelte:head>
+	<title>Projects | Jay Kerkar | Full-Stack Developer - Web, Mobile & Web3 Solutions</title>
+</svelte:head>
+
 <div class="container mx-auto max-w-7xl px-4 py-12">
 	{#if featuredProjects.length > 0}
 		<section class="mb-16">
