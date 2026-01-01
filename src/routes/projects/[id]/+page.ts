@@ -26,23 +26,20 @@ export const load: PageLoad = async ({ params, fetch }) => {
 	}
 
 	const screenshots: string[] = [];
-	const screenshotModules = import.meta.glob('/static/projects/*/screenshot-*.png', {
-		eager: true,
-		query: '?url',
-		import: 'default'
-	});
 
-	Object.keys(screenshotModules)
-		.filter((path) => path.includes(`/projects/${params.id}/`))
-		.sort((a, b) => {
-			const numA = parseInt(a.match(/screenshot-(\d+)/)?.[1] || '0');
-			const numB = parseInt(b.match(/screenshot-(\d+)/)?.[1] || '0');
-			return numA - numB;
-		})
-		.forEach((path) => {
-			const publicPath = path.replace('/static', '');
-			screenshots.push(publicPath);
-		});
+	for (let i = 1; i <= 20; i++) {
+		const screenshotPath = `/projects/${params.id}/screenshot-${i}.png`;
+		try {
+			const response = await fetch(screenshotPath, { method: 'HEAD' });
+			if (response.ok) {
+				screenshots.push(screenshotPath);
+			} else {
+				break;
+			}
+		} catch {
+			break;
+		}
+	}
 
 	return {
 		project,
