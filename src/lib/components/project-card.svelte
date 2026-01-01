@@ -31,15 +31,15 @@
 			</div>
 
 			<div class="flex shrink-0 gap-2">
-				<a target="_blank" href={project.githubLink} rel="noopener noreferrer" aria-label="View on GitHub">
-					<Button variant="outline" size="icon">
+				<a target="_blank" href={project.githubLink} rel="noopener noreferrer">
+					<Button variant="outline" size="icon" aria-label="View on GitHub">
 						<Github class="size-4" />
 					</Button>
 				</a>
 
 				{#if project.deployedLink}
-					<a target="_blank" rel="noopener noreferrer" href={project.deployedLink} aria-label="View deployed site">
-						<Button variant="outline" size="icon">
+					<a target="_blank" rel="noopener noreferrer" href={project.deployedLink}>
+						<Button variant="outline" size="icon" aria-label="View deployed site">
 							<ExternalLink class="size-4" />
 						</Button>
 					</a>
@@ -48,30 +48,32 @@
 		</div>
 
 		<div class="w-full overflow-x-auto rounded-xl border border-border bg-secondary/30">
-			<div class="flex items-center justify-between gap-3 px-4 py-3">
-				{#each project.techStack as tech (tech.title)}
-					<Tooltip.Root>
-						<Tooltip.Trigger
-							aria-label={tech.title}
-							class="flex size-9 shrink-0 items-center justify-center rounded-lg transition-transform hover:scale-110"
-						>
-							<svg
-								width="26"
-								height="26"
-								viewBox="0 0 24 24"
-								fill="currentColor"
-								xmlns="http://www.w3.org/2000/svg"
-								style="color: {brandColor(tech.hex)}"
+			<Tooltip.Provider>
+				<div class="flex items-center justify-between gap-3 px-4 py-3">
+					{#each project.techStack as tech (tech.title)}
+						<Tooltip.Root>
+							<Tooltip.Trigger
+								aria-label={tech.title}
+								class="flex size-9 shrink-0 items-center justify-center rounded-lg transition-transform hover:scale-110"
 							>
-								<path d={tech.path} />
-							</svg>
-						</Tooltip.Trigger>
-						<Tooltip.Content>
-							<p class="font-medium">{tech.title}</p>
-						</Tooltip.Content>
-					</Tooltip.Root>
-				{/each}
-			</div>
+								<svg
+									width="26"
+									height="26"
+									viewBox="0 0 24 24"
+									fill="currentColor"
+									xmlns="http://www.w3.org/2000/svg"
+									style="color: {brandColor(tech.hex)}"
+								>
+									<path d={tech.path} />
+								</svg>
+							</Tooltip.Trigger>
+							<Tooltip.Content>
+								<p class="font-medium">{tech.title}</p>
+							</Tooltip.Content>
+						</Tooltip.Root>
+					{/each}
+				</div>
+			</Tooltip.Provider>
 		</div>
 
 		<div class="flex items-center justify-between gap-4">
@@ -79,14 +81,14 @@
 				<a href="/hackathons/{project.hackathonId}">
 					<Button variant="outline" class="gap-2">
 						<Zap class="size-4" />
-						Built at hackathon
+						Built at ETHIndiaVilla 2025
 					</Button>
 				</a>
 			{/if}
 
 			<a href="/projects/{project.id}">
-				<Button class="gap-2">
-					View details
+				<Button class="gap-2" aria-label="View {project.title} details">
+					View
 					<ArrowRight class="size-4" />
 				</Button>
 			</a>
