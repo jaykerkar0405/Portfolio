@@ -140,30 +140,32 @@
 		<div class="space-y-6 lg:space-y-8">
 			<div class="flex justify-center">
 				<div class="w-full overflow-x-auto rounded-2xl border border-border bg-card">
-					<div class="flex min-h-20 items-center justify-between px-4">
-						{#each techStack as tech (tech.name)}
-							<Tooltip.Root>
-								<Tooltip.Trigger
-									aria-label={tech.name}
-									class="flex size-14 shrink-0 items-center justify-center rounded-lg transition-transform hover:scale-110"
-								>
-									<svg
-										width="40"
-										height="40"
-										viewBox="0 0 24 24"
-										fill="currentColor"
-										xmlns="http://www.w3.org/2000/svg"
-										style="color: {brandColor(tech.icon.hex)}"
+					<Tooltip.Provider>
+						<div class="flex min-h-20 items-center justify-between px-4">
+							{#each techStack as tech (tech.name)}
+								<Tooltip.Root>
+									<Tooltip.Trigger
+										aria-label={tech.name}
+										class="flex size-14 shrink-0 items-center justify-center rounded-lg transition-transform hover:scale-110"
 									>
-										<path d={tech.icon.path} />
-									</svg>
-								</Tooltip.Trigger>
-								<Tooltip.Content>
-									<p class="font-medium">{tech.name}</p>
-								</Tooltip.Content>
-							</Tooltip.Root>
-						{/each}
-					</div>
+										<svg
+											width="40"
+											height="40"
+											viewBox="0 0 24 24"
+											fill="currentColor"
+											xmlns="http://www.w3.org/2000/svg"
+											style="color: {brandColor(tech.icon.hex)}"
+										>
+											<path d={tech.icon.path} />
+										</svg>
+									</Tooltip.Trigger>
+									<Tooltip.Content>
+										<p class="font-medium">{tech.name}</p>
+									</Tooltip.Content>
+								</Tooltip.Root>
+							{/each}
+						</div>
+					</Tooltip.Provider>
 				</div>
 			</div>
 
