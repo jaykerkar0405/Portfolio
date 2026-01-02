@@ -2,14 +2,15 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import * as Carousel from '$lib/components/ui/carousel';
-	import { ExternalLink, Github, Star, Zap, Video, Layers } from 'lucide-svelte';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
+	import { ExternalLink, Github, Users, Star, Zap, Video, Layers } from 'lucide-svelte';
 
 	let { data } = $props();
 
 	const project = $derived(data.project);
 	const repoData = $derived(data.repoData);
 	const screenshots = $derived(data.screenshots || []);
+	const teamMembersData = $derived(data.teamMembersData || []);
 	const ExtendedDescription = $derived(data.ExtendedDescription);
 
 	const formatNumber = (num: number) => {
@@ -177,6 +178,34 @@
 						</Tooltip.Provider>
 					</div></CardContent
 				>
+			</Card>
+
+			<Card class="mb- max-h-auto">
+				<CardHeader>
+					<CardTitle class="flex items-center gap-2 text-lg">
+						<Users class="size-5" />
+						Team
+					</CardTitle>
+				</CardHeader>
+
+				<CardContent class="-mt-2 py-0">
+					<div class="grid gap-4">
+						{#each teamMembersData as member}
+							<a
+								target="_blank"
+								href={member.profileUrl}
+								rel="noopener noreferrer"
+								class="flex items-center gap-4 rounded-lg border border-border bg-secondary/30 p-4 transition-colors hover:bg-secondary/50"
+							>
+								<img src={member.avatar} alt={member.name} class="size-12 rounded-full border-2 border-border" />
+								<div class="flex flex-col gap-1">
+									<span class="font-semibold">{member.name}</span>
+									<span class="text-sm text-muted-foreground">@{member.username}</span>
+								</div>
+							</a>
+						{/each}
+					</div>
+				</CardContent>
 			</Card>
 		</div>
 
