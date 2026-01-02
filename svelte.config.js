@@ -4,7 +4,17 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	kit: { adapter: adapter() },
+	kit: {
+		adapter: adapter(),
+		prerender: {
+			handleHttpError: ({ path, referrer, message }) => {
+				if (path.match(/\/projects\/[^/]+\/screenshot-\d+\.png$/)) {
+					return;
+				}
+				throw new Error(message);
+			}
+		}
+	},
 	extensions: ['.svelte', '.svx'],
 	preprocess: [vitePreprocess(), mdsvex()]
 };
