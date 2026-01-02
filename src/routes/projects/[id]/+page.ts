@@ -9,6 +9,14 @@ export const load: PageLoad = async ({ params, fetch }) => {
 		throw error(404, 'Project not found');
 	}
 
+	let ExtendedDescription = null;
+	try {
+		const module = await import(`$lib/projects/extended_descriptions/${params.id}.svx`);
+		ExtendedDescription = module.default;
+	} catch (e) {
+		console.log('No extended description found for this project');
+	}
+
 	const githubRepoMatch = project.githubLink.match(/github\.com\/([^/]+)\/([^/]+)/);
 	const [, owner, repo] = githubRepoMatch || [];
 
@@ -44,6 +52,7 @@ export const load: PageLoad = async ({ params, fetch }) => {
 	return {
 		project,
 		repoData,
-		screenshots
+		screenshots,
+		ExtendedDescription
 	};
 };
