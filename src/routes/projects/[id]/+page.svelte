@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
+	import * as Tooltip from '$lib/components/ui/tooltip';
 	import * as Carousel from '$lib/components/ui/carousel';
-	import { ExternalLink, Github, Star, Zap, Video } from 'lucide-svelte';
+	import { ExternalLink, Github, Star, Zap, Video, Layers } from 'lucide-svelte';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 
 	let { data } = $props();
@@ -16,6 +17,12 @@
 			return `${(num / 1000).toFixed(1)}k`;
 		}
 		return num.toString();
+	};
+
+	const brandColor = (hex: string) => {
+		const normalized = hex.toLowerCase();
+		if (normalized === '000000' || normalized === 'ffffff') return 'currentColor';
+		return `#${hex}`;
 	};
 </script>
 
@@ -108,37 +115,77 @@
 	{/if}
 
 	<div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
-		{#if project.videoLink}
+		<div class="flex flex-col gap-5">
+			{#if project.videoLink}
+				<Card class="mb- max-h-auto">
+					<CardHeader>
+						<CardTitle class="flex items-center gap-2 text-lg">
+							<Video class="size-5" />
+							Demo
+						</CardTitle>
+					</CardHeader>
+
+					<CardContent class="-mt-2 p-0">
+						<div class="aspect-video w-full px-6">
+							<iframe
+								allowfullscreen
+								class="h-full w-full rounded-lg"
+								title="{project.title} Demo Video"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+								src={project.videoLink.replace('youtu.be/', 'www.youtube.com/embed/').replace('watch?v=', 'embed/')}
+							></iframe>
+						</div>
+					</CardContent>
+				</Card>
+			{/if}
+
 			<Card class="mb- max-h-auto">
 				<CardHeader>
 					<CardTitle class="flex items-center gap-2 text-lg">
-						<Video class="size-5" />
-						Demo
+						<Layers class="size-5" />
+						Tech Stack
 					</CardTitle>
 				</CardHeader>
 
-				<CardContent class="-mt-2 p-0">
-					<div class="aspect-video w-full px-6">
-						<iframe
-							allowfullscreen
-							class="h-full w-full rounded-lg"
-							title="{project.title} Demo Video"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							src={project.videoLink.replace('youtu.be/', 'www.youtube.com/embed/').replace('watch?v=', 'embed/')}
-						></iframe>
-					</div>
-				</CardContent>
+				<CardContent class="-mt-2 py-0"
+					><div class="w-full overflow-x-auto rounded-xl border border-border bg-secondary/30">
+						<Tooltip.Provider>
+							<div class="flex items-center justify-between gap-3 px-4 py-3">
+								{#each project.techStack as tech (tech.title)}
+									<Tooltip.Root>
+										<Tooltip.Trigger
+											aria-label={tech.title}
+											class="flex size-9 shrink-0 items-center justify-center rounded-lg transition-transform hover:scale-110"
+										>
+											<svg
+												width="26"
+												height="26"
+												viewBox="0 0 24 24"
+												fill="currentColor"
+												xmlns="http://www.w3.org/2000/svg"
+												style="color: {brandColor(tech.hex)}"
+											>
+												<path d={tech.path} />
+											</svg>
+										</Tooltip.Trigger>
+										<Tooltip.Content>
+											<p class="font-medium">{tech.title}</p>
+										</Tooltip.Content>
+									</Tooltip.Root>
+								{/each}
+							</div>
+						</Tooltip.Provider>
+					</div></CardContent
+				>
 			</Card>
-		{/if}
+		</div>
 
 		<Card class="py-1 lg:col-span-2">
-			{#if ExtendedDescription}
-				<CardContent
-					class="prose max-w-none p-8 prose-zinc dark:prose-invert prose-headings:font-bold prose-h1:mt-0 prose-h1:mb-6 prose-h1:text-3xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-base prose-p:leading-7 prose-a:text-primary prose-a:underline hover:prose-a:text-primary/80 prose-strong:font-semibold prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:before:content-[''] prose-code:after:content-[''] prose-ul:my-4 prose-li:my-2 prose-hr:my-8 prose-hr:border-border"
-				>
-					<ExtendedDescription />
-				</CardContent>
-			{/if}
+			<CardContent
+				class="prose max-w-none p-8 prose-zinc dark:prose-invert prose-headings:font-bold prose-h1:mt-0 prose-h1:mb-6 prose-h1:text-3xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-base prose-p:leading-7 prose-a:text-primary prose-a:underline hover:prose-a:text-primary/80 prose-strong:font-semibold prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:before:content-[''] prose-code:after:content-[''] prose-ul:my-4 prose-li:my-2 prose-hr:my-8 prose-hr:border-border"
+			>
+				<ExtendedDescription />
+			</CardContent>
 		</Card>
 	</div>
 </div>
