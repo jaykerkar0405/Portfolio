@@ -1,14 +1,15 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import * as Carousel from '$lib/components/ui/carousel';
-	import { Card, CardContent } from '$lib/components/ui/card';
-	import { ExternalLink, Github, Star, Zap } from 'lucide-svelte';
+	import { ExternalLink, Github, Star, Zap, Video } from 'lucide-svelte';
+	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 
 	let { data } = $props();
 
 	const project = $derived(data.project);
 	const repoData = $derived(data.repoData);
 	const screenshots = $derived(data.screenshots || []);
+	const ExtendedDescription = $derived(data.ExtendedDescription);
 
 	const formatNumber = (num: number) => {
 		if (num >= 1000) {
@@ -65,15 +66,15 @@
 					{/if}
 
 					{#if project.deployedLink}
-						<a target="_blank" rel="noopener noreferrer" href={project.deployedLink} aria-label="View deployed site">
-							<Button variant="outline" size="icon">
+						<a target="_blank" rel="noopener noreferrer" href={project.deployedLink}>
+							<Button variant="outline" size="icon" aria-label="View deployed site">
 								<ExternalLink class="size-4" />
 							</Button>
 						</a>
 					{/if}
 
-					<a href={project.githubLink} target="_blank" rel="noopener noreferrer" aria-label="View on GitHub">
-						<Button size="icon">
+					<a href={project.githubLink} target="_blank" rel="noopener noreferrer">
+						<Button size="icon" aria-label="View on GitHub">
 							<Github class="size-4" />
 						</Button>
 					</a>
@@ -105,4 +106,39 @@
 			</Carousel.Root>
 		</div>
 	{/if}
+
+	<div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
+		{#if project.videoLink}
+			<Card class="mb- max-h-auto">
+				<CardHeader>
+					<CardTitle class="flex items-center gap-2 text-lg">
+						<Video class="size-5" />
+						Demo
+					</CardTitle>
+				</CardHeader>
+
+				<CardContent class="-mt-2 p-0">
+					<div class="aspect-video w-full px-6">
+						<iframe
+							allowfullscreen
+							class="h-full w-full rounded-lg"
+							title="{project.title} Demo Video"
+							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+							src={project.videoLink.replace('youtu.be/', 'www.youtube.com/embed/').replace('watch?v=', 'embed/')}
+						></iframe>
+					</div>
+				</CardContent>
+			</Card>
+		{/if}
+
+		<Card class="p-2 lg:col-span-2">
+			{#if ExtendedDescription}
+				<CardContent
+					class="prose max-w-none p-8 prose-zinc dark:prose-invert prose-headings:font-bold prose-h1:mt-0 prose-h1:mb-6 prose-h1:text-3xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-base prose-p:leading-7 prose-a:text-primary prose-a:underline hover:prose-a:text-primary/80 prose-strong:font-semibold prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:before:content-[''] prose-code:after:content-[''] prose-ul:my-4 prose-li:my-2 prose-hr:my-8 prose-hr:border-border"
+				>
+					<ExtendedDescription />
+				</CardContent>
+			{/if}
+		</Card>
+	</div>
 </div>
