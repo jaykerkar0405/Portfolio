@@ -4,7 +4,7 @@ import { siVite, siSolidity, siEthereum, siTypescript, siTailwindcss } from 'sim
 export const projects: Project[] = [
 	{
 		id: 'vault-id',
-		featured: true,
+		featured: false,
 		title: 'VaultID',
 		hackathonId: 'eth-india-villa',
 		videoLink: 'https://youtu.be/kNMljHOG6n8',
