@@ -25,6 +25,16 @@ npm run dev
 npm run dev -- --open
 ```
 
+### Environment Variables
+
+Create a `.env` file in the root directory (see `.env.example` for reference):
+
+```env
+GITHUB_PAT=your_github_personal_access_token_here
+```
+
+The GitHub Personal Access Token is used to avoid rate limits when fetching repository data. Get your token from [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens).
+
 ## Building
 
 To create a production version of your app:
