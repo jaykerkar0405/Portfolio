@@ -29,14 +29,11 @@
 				{#each navigationItems as item (item.href)}
 					<a
 						href={item.href}
-						class="relative px-5 py-2.5 text-base font-medium text-muted-foreground transition-colors duration-150
-    ease-out after:absolute
-    after:-bottom-0.5 after:left-1/2 after:h-[1.75px]
-    after:w-0 after:-translate-x-1/2
-    after:bg-foreground after:transition-all
-    after:duration-200
-    hover:text-foreground hover:after:w-1/2
-    {isActive(item.href) ? 'text-foreground after:w-full' : ''}"
+						class="px-5 py-2.5 text-base font-medium transition-colors duration-150 ease-out hover:text-foreground {isActive(
+							item.href
+						)
+							? 'border-b-[1.75px] border-foreground text-foreground'
+							: 'text-muted-foreground hover:border-b-[1.75px] hover:border-foreground'}"
 					>
 						{item.label}
 					</a>
