@@ -19,5 +19,4 @@ export interface Project {
 	techStack: TechStack[];
 	shortDescription: string;
 	teamMembers: TeamMember[];
-	extendedDescriptionPath: string;
 }
