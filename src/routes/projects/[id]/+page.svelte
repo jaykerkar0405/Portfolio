@@ -171,7 +171,9 @@
 				</CardHeader>
 
 				<CardContent class="-mt-2 py-0"
-					><div class="w-full overflow-x-auto rounded-xl border border-border bg-secondary/30">
+					><div
+						class="scrollbar-hide w-full overflow-x-auto overflow-y-hidden rounded-xl border border-border bg-secondary/30"
+					>
 						<Tooltip.Provider>
 							<div class="flex items-center justify-between gap-3 px-4 py-3">
 								{#each project.techStack as tech (tech.title)}
@@ -270,3 +272,32 @@
 		</div>
 	</div>
 </div>
+
+<style>
+	.scrollbar-hide {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		scrollbar-gutter: stable;
+	}
+	.scrollbar-hide::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
+	.scrollbar-hide:hover,
+	.scrollbar-hide:focus-within {
+		scrollbar-width: thin;
+	}
+	.scrollbar-hide::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	.scrollbar-hide:hover::-webkit-scrollbar,
+	.scrollbar-hide:focus-within::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	.scrollbar-hide:hover::-webkit-scrollbar-thumb,
+	.scrollbar-hide:focus-within::-webkit-scrollbar-thumb {
+		background: hsl(var(--border));
+		border-radius: 3px;
+	}
+</style>

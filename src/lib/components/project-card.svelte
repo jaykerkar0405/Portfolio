@@ -47,7 +47,9 @@
 			</div>
 		</div>
 
-		<div class="w-full overflow-x-auto rounded-xl border border-border bg-secondary/30">
+		<div
+			class="scrollbar-hide w-full overflow-x-auto overflow-y-hidden rounded-xl border border-border bg-secondary/30"
+		>
 			<Tooltip.Provider>
 				<div class="flex items-center justify-between gap-3 px-4 py-3">
 					{#each project.techStack as tech (tech.title)}
@@ -76,7 +78,7 @@
 			</Tooltip.Provider>
 		</div>
 
-		<div class="flex items-center justify-between gap-4">
+		<div class="flex items-center gap-4">
 			{#if project.hackathonId}
 				<a href="/hackathons/{project.hackathonId}">
 					<Button variant="outline" class="gap-2">
@@ -86,7 +88,7 @@
 				</a>
 			{/if}
 
-			<a href="/projects/{project.id}">
+			<a href="/projects/{project.id}" class="ml-auto">
 				<Button class="gap-2" aria-label="View {project.title} details">
 					View
 					<ArrowRight class="size-4" />
@@ -95,3 +97,32 @@
 		</div>
 	</CardContent>
 </Card>
+
+<style>
+	.scrollbar-hide {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		scrollbar-gutter: stable;
+	}
+	.scrollbar-hide::-webkit-scrollbar {
+		width: 0;
+		height: 0;
+	}
+	.scrollbar-hide:hover,
+	.scrollbar-hide:focus-within {
+		scrollbar-width: thin;
+	}
+	.scrollbar-hide::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	.scrollbar-hide:hover::-webkit-scrollbar,
+	.scrollbar-hide:focus-within::-webkit-scrollbar {
+		width: 6px;
+		height: 6px;
+	}
+	.scrollbar-hide:hover::-webkit-scrollbar-thumb,
+	.scrollbar-hide:focus-within::-webkit-scrollbar-thumb {
+		background: hsl(var(--border));
+		border-radius: 3px;
+	}
+</style>
