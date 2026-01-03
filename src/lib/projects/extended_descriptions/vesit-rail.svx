@@ -1,0 +1,45 @@
+# The problem it solves
+
+Managing **railway concessions** for students has traditionally been a **time-consuming and manual process**. Students had to repeatedly fill out forms, submit physical copies, and constantly follow up with authorities to know the status of their applications. Administrators, on the other hand, faced piles of paperwork, manual verifications, and inefficient ways to track concession history.
+
+**VESITRail solves this problem by digitizing and streamlining the entire process.**
+
+- 🎓 **For Students**
+
+  - No more repetitive form filling — most details are auto-filled from the student profile.
+  - Real-time tracking means no need to chase administrators for updates.
+  - Digital booklets reduce dependency on physical copies.
+  - Notifications keep them informed without extra effort.
+
+- 👨‍💼 **For Administrators**
+  - All student applications are managed in one place.
+  - Automated workflows (like address changes and renewals) reduce manual errors.
+  - Reports and analytics give clear insights into application trends.
+  - Booklet management becomes effortless and standardized.
+
+In short, VESITRail makes the **entire concession process faster, safer, and more reliable** — replacing messy paperwork with a modern, seamless system.
+
+---
+
+# Challenges we ran into
+
+Building VESITRail wasn’t without hurdles. Some of the biggest challenges included:
+
+1. **Firebase Service Worker Integration**
+
+   - **Challenge**: Needed to integrate **Firebase’s push notification service worker** with my **custom PWA service worker**. Both had to coexist without breaking offline caching or notifications.
+   - **Solution**: Carefully merged both service workers by designing a unified event-handling strategy, ensuring **notifications and offline support work together**.
+
+2. **Efficient Cache Management**
+
+   - **Challenge**: Balancing between **fast load times** and **fresh content updates** for users.
+   - **Solution**: Implemented a caching strategy with **stale-while-revalidate** approach, so users always get a smooth offline/instant experience while still fetching the latest data in the background.
+
+3. **Simplifying User Experience**
+
+   - **Challenge**: Students often found forms repetitive and confusing.
+   - **Solution**: Focused on **auto-filling as much data as possible** (academic details, travel preferences, profile info) to minimize user input and make onboarding **as frictionless as possible**.
+
+4. **Dynamic Print Dimensions for Forms**
+   - **Challenge**: The scanned concession forms often had **slight positional shifts** in content, making fixed templates unreliable in earlier systems.
+   - **Solution**: Built a **dynamic print dimension generator** that adapts based on the scanned form layout. This ensured that generated forms **align perfectly regardless of small shifts** — something that was not possible in the older manual system.
