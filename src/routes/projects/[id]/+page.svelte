@@ -3,7 +3,7 @@
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import * as Carousel from '$lib/components/ui/carousel';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
-	import { ExternalLink, Github, Users, Star, Zap, Video, Layers } from 'lucide-svelte';
+	import { ExternalLink, Github, Users, Star, Zap, Video, Layers, ChevronDown, ChevronUp } from 'lucide-svelte';
 
 	let { data } = $props();
 
@@ -12,6 +12,28 @@
 	const screenshots = $derived(data.screenshots || []);
 	const teamMembersData = $derived(data.teamMembersData || []);
 	const ExtendedDescription = $derived(data.ExtendedDescription);
+
+	let leftColHeight = $state(0);
+	let leftColRef: HTMLDivElement;
+	let descColRef: HTMLDivElement;
+	let isExpanded = $state(false);
+	let needsExpansion = $state(false);
+
+	$effect(() => {
+		if (leftColRef && descColRef) {
+			const checkHeight = () => {
+				const leftHeight = leftColRef.offsetHeight - 9.3;
+				const descHeight = descColRef.scrollHeight;
+				leftColHeight = leftHeight;
+				needsExpansion = descHeight > leftHeight;
+			};
+			checkHeight();
+			const resizeObserver = new ResizeObserver(checkHeight);
+			resizeObserver.observe(leftColRef);
+			resizeObserver.observe(descColRef);
+			return () => resizeObserver.disconnect();
+		}
+	});
 
 	const formatNumber = (num: number) => {
 		if (num >= 1000) {
@@ -116,9 +138,9 @@
 	{/if}
 
 	<div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
-		<div class="flex flex-col gap-5">
+		<div bind:this={leftColRef} class="flex flex-col gap-5">
 			{#if project.videoLink}
-				<Card class="mb- max-h-auto">
+				<Card>
 					<CardHeader>
 						<CardTitle class="flex items-center gap-2 text-lg">
 							<Video class="size-5" />
@@ -140,7 +162,7 @@
 				</Card>
 			{/if}
 
-			<Card class="mb- max-h-auto">
+			<Card>
 				<CardHeader>
 					<CardTitle class="flex items-center gap-2 text-lg">
 						<Layers class="size-5" />
@@ -180,7 +202,7 @@
 				>
 			</Card>
 
-			<Card class="mb- max-h-auto">
+			<Card>
 				<CardHeader>
 					<CardTitle class="flex items-center gap-2 text-lg">
 						<Users class="size-5" />
@@ -209,12 +231,42 @@
 			</Card>
 		</div>
 
-		<Card class="py-1 lg:col-span-2">
-			<CardContent
-				class="prose max-w-none p-8 prose-zinc dark:prose-invert prose-headings:font-bold prose-h1:mt-0 prose-h1:mb-6 prose-h1:text-3xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-base prose-p:leading-7 prose-a:text-primary prose-a:underline hover:prose-a:text-primary/80 prose-strong:font-semibold prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:before:content-[''] prose-code:after:content-[''] prose-ul:my-4 prose-li:my-2 prose-hr:my-8 prose-hr:border-border"
-			>
-				<ExtendedDescription />
-			</CardContent>
-		</Card>
+		<div class="lg:col-span-2">
+			<Card class="relative overflow-hidden py-1">
+				<CardContent class="p-0">
+					<div
+						bind:this={descColRef}
+						style:overflow={!isExpanded && needsExpansion ? 'hidden' : 'visible'}
+						style:max-height={!isExpanded && needsExpansion ? `${leftColHeight}px` : 'none'}
+						class="prose max-w-none p-8 transition-all duration-300 prose-zinc dark:prose-invert prose-headings:font-bold prose-h1:mt-0 prose-h1:mb-6 prose-h1:text-3xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-base prose-p:leading-7 prose-a:text-primary prose-a:underline hover:prose-a:text-primary/80 prose-strong:font-semibold prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:before:content-[''] prose-code:after:content-[''] prose-ul:my-4 prose-li:my-2 prose-hr:my-8 prose-hr:border-border"
+					>
+						<ExtendedDescription />
+					</div>
+				</CardContent>
+
+				{#if needsExpansion && !isExpanded}
+					<div
+						class="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-background via-background/80 to-transparent"
+					></div>
+				{/if}
+
+				{#if needsExpansion}
+					<div class="flex justify-center pb-4 {!isExpanded ? 'absolute inset-x-0 bottom-0' : 'pt-4'}">
+						<Button
+							variant="default"
+							onclick={() => (isExpanded = !isExpanded)}
+							class="relative z-10 gap-2  backdrop-blur-sm"
+						>
+							{isExpanded ? 'Show Less' : 'See More'}
+							{#if isExpanded}
+								<ChevronUp class="size-4" />
+							{:else}
+								<ChevronDown class="size-4" />
+							{/if}
+						</Button>
+					</div>
+				{/if}
+			</Card>
+		</div>
 	</div>
 </div>
