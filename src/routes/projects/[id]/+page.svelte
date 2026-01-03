@@ -1,9 +1,22 @@
 <script lang="ts">
+	import {
+		X,
+		Zap,
+		Star,
+		Video,
+		Users,
+		Github,
+		Layers,
+		ChevronUp,
+		ChevronLeft,
+		ChevronDown,
+		ChevronRight,
+		ExternalLink
+	} from 'lucide-svelte';
 	import { Button } from '$lib/components/ui/button';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import * as Carousel from '$lib/components/ui/carousel';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
-	import { ExternalLink, Github, Users, Star, Zap, Video, Layers, ChevronDown, ChevronUp } from 'lucide-svelte';
 
 	let { data } = $props();
 
@@ -18,6 +31,24 @@
 	let descColRef: HTMLDivElement;
 	let isExpanded = $state(false);
 	let needsExpansion = $state(false);
+	let selectedImageIndex = $state<number | null>(null);
+
+	const openImageModal = (index: number) => {
+		selectedImageIndex = index;
+	};
+
+	const closeImageModal = () => {
+		selectedImageIndex = null;
+	};
+
+	const navigateImage = (direction: 'prev' | 'next') => {
+		if (selectedImageIndex === null) return;
+		if (direction === 'prev') {
+			selectedImageIndex = selectedImageIndex === 0 ? screenshots.length - 1 : selectedImageIndex - 1;
+		} else {
+			selectedImageIndex = selectedImageIndex === screenshots.length - 1 ? 0 : selectedImageIndex + 1;
+		}
+	};
 
 	$effect(() => {
 		if (leftColRef && descColRef) {
@@ -119,12 +150,12 @@
 				<Carousel.Content class="-ml-2 md:-ml-4">
 					{#each screenshots as screenshot, i}
 						<Carousel.Item class="basis-full pl-2 md:basis-1/2 md:pl-4 lg:basis-1/3">
-							<Card class="overflow-hidden py-0">
+							<Card class="cursor-pointer overflow-hidden py-0" onclick={() => openImageModal(i)}>
 								<CardContent class="p-0">
 									<img
 										src={screenshot}
 										alt="{project.title} Screenshot {i + 1}"
-										class="aspect-video w-full rounded-lg object-cover"
+										class="aspect-video w-full rounded-lg object-cover transition-transform hover:scale-105"
 									/>
 								</CardContent>
 							</Card>
@@ -272,6 +303,70 @@
 		</div>
 	</div>
 </div>
+
+{#if selectedImageIndex !== null}
+	<div
+		class="fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm"
+		onclick={closeImageModal}
+		onkeydown={(e) => {
+			if (e.key === 'Escape') closeImageModal();
+			if (e.key === 'ArrowLeft') navigateImage('prev');
+			if (e.key === 'ArrowRight') navigateImage('next');
+		}}
+		role="button"
+		tabindex="-1"
+	>
+		<button
+			onclick={closeImageModal}
+			class="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-2 backdrop-blur-sm transition-colors hover:bg-white/20"
+			aria-label="Close"
+		>
+			<X class="size-6 text-white" />
+		</button>
+
+		{#if screenshots.length > 1}
+			<button
+				onclick={(e) => {
+					e.stopPropagation();
+					navigateImage('prev');
+				}}
+				class="absolute left-4 z-10 rounded-full bg-white/10 p-3 backdrop-blur-sm transition-colors hover:bg-white/20"
+				aria-label="Previous image"
+			>
+				<ChevronLeft class="size-6 cursor-pointer text-white" />
+			</button>
+
+			<button
+				onclick={(e) => {
+					e.stopPropagation();
+					navigateImage('next');
+				}}
+				class="absolute right-4 z-10 rounded-full bg-white/10 p-3 backdrop-blur-sm transition-colors hover:bg-white/20"
+				aria-label="Next image"
+			>
+				<ChevronRight class="size-6 cursor-pointer text-white" />
+			</button>
+		{/if}
+
+		<div
+			role="presentation"
+			class="max-h-[90vh] max-w-[90vw]"
+			onclick={(e) => e.stopPropagation()}
+			onkeydown={(e) => e.stopPropagation()}
+		>
+			<img
+				src={screenshots[selectedImageIndex]}
+				class="max-h-[90vh] w-auto rounded-lg object-contain"
+				alt="{project.title} Screenshot {selectedImageIndex + 1}"
+			/>
+			{#if screenshots.length > 1}
+				<div class="mt-4 text-center text-sm text-white/70">
+					{selectedImageIndex + 1} / {screenshots.length}
+				</div>
+			{/if}
+		</div>
+	</div>
+{/if}
 
 <style>
 	.scrollbar-hide {
