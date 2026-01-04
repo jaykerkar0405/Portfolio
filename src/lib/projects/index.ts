@@ -49,6 +49,25 @@ export const projects: Project[] = [
 		]
 	},
 	{
+		featured: true,
+		id: 'chrono-vault',
+		title: 'ChronoVault',
+		hackathonId: 'ethonline-2025',
+		videoLink: 'https://youtu.be/Qg4RDl1IBHM',
+		githubLink: 'https://github.com/WhyAsh5114/ChronoVault',
+		deployedLink: 'https://chronovault-ethonline.vercel.app',
+		techStack: [siSolidity, siEthereum, siNextdotjs, siTypescript, siTailwindcss],
+		shortDescription: 'Web3 wallet with TOTP-based 2FA and zero-knowledge security',
+		teamMembers: [
+			{
+				githubUsername: 'jaykerkar0405'
+			},
+			{
+				githubUsername: 'WhyAsh5114'
+			}
+		]
+	},
+	{
 		id: 'vault-id',
 		featured: false,
 		title: 'VaultID',
