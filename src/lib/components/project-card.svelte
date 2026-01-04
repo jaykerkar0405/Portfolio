@@ -83,7 +83,7 @@
 				<a href="/hackathons/{project.hackathonId}">
 					<Button variant="outline" class="gap-2">
 						<Zap class="size-4" />
-						Built at ETHIndiaVilla 2025
+						Built at hackathon
 					</Button>
 				</a>
 			{/if}
