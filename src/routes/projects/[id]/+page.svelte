@@ -106,7 +106,7 @@
 					<a href="/hackathons/{project.hackathonId}" class="lg:hidden">
 						<Button variant="outline" class="gap-2">
 							<Zap class="size-4" />
-							Built at ETHIndiaVilla 2025
+							Built at hackathon
 						</Button>
 					</a>
 				{/if}
@@ -317,9 +317,9 @@
 		tabindex="-1"
 	>
 		<button
-			onclick={closeImageModal}
-			class="absolute top-4 right-4 z-10 rounded-full bg-white/10 p-2 backdrop-blur-sm transition-colors hover:bg-white/20"
 			aria-label="Close"
+			onclick={closeImageModal}
+			class="absolute top-4 right-4 z-10 rounded-full border border-white/30 bg-black/60 p-2 shadow-lg backdrop-blur-sm transition-all hover:border-white/50 hover:bg-black/80"
 		>
 			<X class="size-6 text-white" />
 		</button>
@@ -330,7 +330,7 @@
 					e.stopPropagation();
 					navigateImage('prev');
 				}}
-				class="absolute left-4 z-10 rounded-full bg-white/10 p-3 backdrop-blur-sm transition-colors hover:bg-white/20"
+				class="absolute left-4 z-10 rounded-full border border-white/30 bg-black/60 p-3 shadow-lg backdrop-blur-sm transition-all hover:border-white/50 hover:bg-black/80"
 				aria-label="Previous image"
 			>
 				<ChevronLeft class="size-6 cursor-pointer text-white" />
@@ -341,7 +341,7 @@
 					e.stopPropagation();
 					navigateImage('next');
 				}}
-				class="absolute right-4 z-10 rounded-full bg-white/10 p-3 backdrop-blur-sm transition-colors hover:bg-white/20"
+				class="absolute right-4 z-10 rounded-full border border-white/30 bg-black/60 p-3 shadow-lg backdrop-blur-sm transition-all hover:border-white/50 hover:bg-black/80"
 				aria-label="Next image"
 			>
 				<ChevronRight class="size-6 cursor-pointer text-white" />
