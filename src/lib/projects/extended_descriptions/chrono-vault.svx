@@ -1,0 +1,21 @@
+# The problem it solves
+
+Self-custody wallets prioritize decentralization, but often at the cost of user-friendly and robust security. While traditional Web2 systems rely heavily on two-factor authentication (2FA) like TOTP for protecting high-value actions, most Web3 wallets either lack native 2FA or implement it in ways that compromise privacy, decentralization, or usability.
+
+ChronoVault bridges this gap by enabling **transaction-level TOTP-based 2FA** for Web3 wallets without ever exposing secrets on-chain. By leveraging **zero-knowledge proofs** and **ERC-4337 account abstraction**, users can prove possession of a valid TOTP code for every transaction while maintaining full self-custody and privacy.
+
+This approach delivers bank-grade security guarantees to Web3 wallets—without relying on centralized servers, precomputed hashes, or insecure client-side storage.
+
+---
+
+# Challenges we ran into
+
+### 1. Writing Zero-Knowledge Circuits from Scratch
+
+Zero-knowledge circuit development was entirely new territory for us. Implementing the full TOTP algorithm (RFC 6238) inside Circom—while keeping constraints efficient and provable—required a deep understanding of both cryptographic primitives and circuit design. Iterating on correctness, performance, and compatibility with on-chain verification was one of the most technically demanding parts of the project.
+
+### 2. Secure Proof Transfer Between Devices
+
+Another major challenge was enabling a seamless flow between the **authenticator device** (where the TOTP is generated) and the **transaction-signing device**. We needed a solution that was secure, fast, and user-friendly—without leaking sensitive data.
+
+We solved this by designing a **WebSocket-based communication layer combined with QR codes**. The QR code establishes a trusted session, and the WebSocket channel securely transfers the zero-knowledge proof from the authenticator device to the transacting device, ensuring smooth multi-device authentication without compromising security or privacy.
