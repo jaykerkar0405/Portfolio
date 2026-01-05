@@ -203,7 +203,8 @@
 
 				<CardContent class="-mt-2 py-0"
 					><div
-						class="scrollbar-hide w-full overflow-x-auto overflow-y-hidden rounded-xl border border-border bg-secondary/30"
+						style="scrollbar-gutter: stable;"
+						class="tech-stack-scroll w-full overflow-x-auto overflow-y-hidden rounded-xl border border-border bg-secondary/30"
 					>
 						<Tooltip.Provider>
 							<div class="flex items-center justify-between gap-3 px-4 py-3">
@@ -369,30 +370,28 @@
 {/if}
 
 <style>
-	.scrollbar-hide {
-		scrollbar-width: none;
-		-ms-overflow-style: none;
+	.tech-stack-scroll {
 		scrollbar-gutter: stable;
-	}
-	.scrollbar-hide::-webkit-scrollbar {
-		width: 0;
-		height: 0;
-	}
-	.scrollbar-hide:hover,
-	.scrollbar-hide:focus-within {
 		scrollbar-width: thin;
+		scrollbar-color: transparent transparent;
 	}
-	.scrollbar-hide::-webkit-scrollbar-track {
-		background: transparent;
-	}
-	.scrollbar-hide:hover::-webkit-scrollbar,
-	.scrollbar-hide:focus-within::-webkit-scrollbar {
+	.tech-stack-scroll::-webkit-scrollbar {
 		width: 6px;
 		height: 6px;
 	}
-	.scrollbar-hide:hover::-webkit-scrollbar-thumb,
-	.scrollbar-hide:focus-within::-webkit-scrollbar-thumb {
-		background: hsl(var(--border));
+	.tech-stack-scroll:hover,
+	.tech-stack-scroll:focus-within {
+		scrollbar-color: hsl(var(--border)) transparent;
+	}
+	.tech-stack-scroll::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	.tech-stack-scroll::-webkit-scrollbar-thumb {
+		background: transparent;
 		border-radius: 3px;
+	}
+	.tech-stack-scroll:hover::-webkit-scrollbar-thumb,
+	.tech-stack-scroll:focus-within::-webkit-scrollbar-thumb {
+		background: hsl(var(--border));
 	}
 </style>
