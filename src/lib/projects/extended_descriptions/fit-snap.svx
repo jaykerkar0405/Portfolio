@@ -1,0 +1,15 @@
+# The Problem It Solves
+
+Online fashion shopping often suffers from two major gaps: inaccurate size selection and the inability to visualize how an outfit will actually look on an individual. Most platforms rely on generic size charts and static product images, leading to poor fit, higher return rates, and a lack of confidence while purchasing.
+
+FitSnap addresses this by combining AI-driven body measurement prediction with virtual try-on technology. By estimating key body dimensions such as shoulder width, chest, and waist from a user’s height, and allowing users to virtually try outfits on their own photos, FitSnap enables more informed and personalized clothing decisions. The added social, swipe-based outfit discovery experience further enhances engagement and inspiration, making fashion exploration both accurate and interactive.
+
+---
+
+# Challenges We Ran Into
+
+One of the primary challenges was accurately detecting clothing items and separating them from complex backgrounds. Precisely identifying clothing boundaries while preserving shape and details was critical for creating realistic virtual try-ons.
+
+The next major challenge involved detecting the human body boundaries of the user who wanted to try the outfit. This required reliable pose estimation and body masking to ensure the clothing aligned naturally with the person’s posture.
+
+Finally, overlaying the extracted clothing onto the user’s image proved challenging. The clothing had to be resized, aligned, and blended correctly based on pose landmarks and segmentation masks, while maintaining visual realism. Achieving smooth alignment between the clothing mask and the user’s body required careful coordination between segmentation, pose estimation, and image processing pipelines.
