@@ -2,11 +2,16 @@ import {
 	siZod,
 	siVite,
 	siReact,
+	siNumpy,
+	siPython,
 	siPrisma,
+	siOpencv,
 	siFirebase,
 	siSolidity,
+	siShadcnui,
 	siEthereum,
 	siNextdotjs,
+	siMediapipe,
 	siTypescript,
 	siPostgresql,
 	siCloudinary,
@@ -85,6 +90,30 @@ export const projects: Project[] = [
 			},
 			{
 				githubUsername: 'sundaram123krishnan'
+			}
+		]
+	},
+	{
+		id: 'fit-snap',
+		featured: false,
+		title: 'FitSnap',
+		hackathonId: 'hackx3.0',
+		deployedLink: 'https://fitsnap-hackx.vercel.app',
+		githubLink: 'https://github.com/Crew-object-Object/FitSnap',
+		shortDescription: 'AI-powered size prediction with AR virtual try-on',
+		techStack: [siTypescript, siNextdotjs, siReact, siShadcnui, siPrisma, siPython, siNumpy, siMediapipe, siOpencv],
+		teamMembers: [
+			{
+				githubUsername: 'jaykerkar0405'
+			},
+			{
+				githubUsername: 'WhyAsh5114'
+			},
+			{
+				githubUsername: 'sundaram123krishnan'
+			},
+			{
+				githubUsername: 'kryyo1441'
 			}
 		]
 	}
