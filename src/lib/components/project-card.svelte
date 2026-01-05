@@ -100,29 +100,27 @@
 
 <style>
 	.scrollbar-hide {
-		scrollbar-width: none;
-		-ms-overflow-style: none;
 		scrollbar-gutter: stable;
+		scrollbar-width: thin;
+		scrollbar-color: transparent transparent;
 	}
 	.scrollbar-hide::-webkit-scrollbar {
-		width: 0;
-		height: 0;
+		width: 6px;
+		height: 6px;
 	}
 	.scrollbar-hide:hover,
 	.scrollbar-hide:focus-within {
-		scrollbar-width: thin;
+		scrollbar-color: hsl(var(--border)) transparent;
 	}
 	.scrollbar-hide::-webkit-scrollbar-track {
 		background: transparent;
 	}
-	.scrollbar-hide:hover::-webkit-scrollbar,
-	.scrollbar-hide:focus-within::-webkit-scrollbar {
-		width: 6px;
-		height: 6px;
+	.scrollbar-hide::-webkit-scrollbar-thumb {
+		background: transparent;
+		border-radius: 3px;
 	}
 	.scrollbar-hide:hover::-webkit-scrollbar-thumb,
 	.scrollbar-hide:focus-within::-webkit-scrollbar-thumb {
 		background: hsl(var(--border));
-		border-radius: 3px;
 	}
 </style>
