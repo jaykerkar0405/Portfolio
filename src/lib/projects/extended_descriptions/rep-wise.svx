@@ -1,0 +1,30 @@
+# The Problem It Solves
+
+RepWise addresses the lack of **personalized, guided, and interactive fitness experiences** in conventional workout apps. Most fitness platforms provide static plans, minimal feedback, and fragmented health tracking, making it difficult for users to stay consistent and train correctly.
+
+RepWise solves this by offering:
+
+- **Personalized Workout Plans** tailored to user goals, fitness level, and available equipment
+- **Real-time Form Correction** using live pose detection with voice feedback to reduce injury risk
+- **Interactive Workout Sessions** with real-time scoring and feedback
+- **Comprehensive Nutrition Tracking** including macro tracking and barcode-based food logging
+- **Gamified Fitness Experience** through PVP challenges and achievement systems
+- **Unified Health Data Sync** across devices using WearOS and Health Connect
+
+Together, these features create a guided, engaging, and data-driven fitness ecosystem that adapts to each user.
+
+---
+
+# Challenges We Ran Into
+
+### WebRTC Stability Issues
+
+Implementing real-time video-based form correction introduced major challenges due to unstable network conditions and limited team familiarity with WebRTC. This led us to switch to **Agora**, which provided a more reliable and scalable real-time communication solution.
+
+### OCR Accuracy for Nutrition Labels
+
+Accurately scanning nutrition tables from food packaging proved difficult. Many OCR models failed to handle inconsistent layouts and fonts. **Mindee** was the closest viable option, though its accuracy was still limited.
+
+### AI Model Constraints
+
+Smaller **Gemini models** struggled with function and tool calling, while larger models introduced latency and compatibility issues with the OpenAI toolspec. Balancing performance, accuracy, and integration compatibility required multiple iterations.
