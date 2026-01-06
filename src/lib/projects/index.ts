@@ -6,6 +6,8 @@ import {
 	siPython,
 	siPrisma,
 	siOpencv,
+	siWebrtc,
+	siSvelte,
 	siFirebase,
 	siSolidity,
 	siShadcnui,
@@ -102,6 +104,30 @@ export const projects: Project[] = [
 		githubLink: 'https://github.com/Crew-object-Object/FitSnap',
 		shortDescription: 'AI-powered size prediction with AR virtual try-on',
 		techStack: [siTypescript, siNextdotjs, siReact, siShadcnui, siPrisma, siPython, siNumpy, siMediapipe, siOpencv],
+		teamMembers: [
+			{
+				githubUsername: 'jaykerkar0405'
+			},
+			{
+				githubUsername: 'WhyAsh5114'
+			},
+			{
+				githubUsername: 'sundaram123krishnan'
+			},
+			{
+				githubUsername: 'kryyo1441'
+			}
+		]
+	},
+	{
+		id: 'rep-wise',
+		featured: false,
+		title: 'RepWise',
+		hackathonId: 'hack-byte-3.0',
+		deployedLink: 'https://rep-wise.vercel.app',
+		githubLink: 'https://github.com/Crew-object-Object/RepWise',
+		shortDescription: 'AI fitness app with pose detection, macros & PVP',
+		techStack: [siSvelte, siMediapipe, siTypescript, siPrisma, siPostgresql, siTailwindcss, siShadcnui, siWebrtc],
 		teamMembers: [
 			{
 				githubUsername: 'jaykerkar0405'
