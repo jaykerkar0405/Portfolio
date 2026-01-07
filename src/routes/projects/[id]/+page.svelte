@@ -26,6 +26,7 @@
 	const teamMembersData = $derived(data.teamMembersData || []);
 	const ExtendedDescription = $derived(data.ExtendedDescription);
 
+	let fullHeight = $state(0);
 	let leftColHeight = $state(0);
 	let leftColRef: HTMLDivElement;
 	let descColRef: HTMLDivElement;
@@ -56,6 +57,7 @@
 				const leftHeight = leftColRef.offsetHeight - 9.3;
 				const descHeight = descColRef.scrollHeight;
 				leftColHeight = leftHeight;
+				fullHeight = descHeight;
 				needsExpansion = descHeight > leftHeight;
 			};
 			checkHeight();
@@ -232,8 +234,8 @@
 								{/each}
 							</div>
 						</Tooltip.Provider>
-					</div></CardContent
-				>
+					</div>
+				</CardContent>
 			</Card>
 
 			<Card>
@@ -266,40 +268,46 @@
 		</div>
 
 		<div class="lg:col-span-2">
-			<Card class="relative overflow-hidden py-1">
+			<Card class="relative py-1">
 				<CardContent class="p-0">
-					<div
-						bind:this={descColRef}
-						style:overflow={!isExpanded && needsExpansion ? 'hidden' : 'visible'}
-						style:max-height={!isExpanded && needsExpansion ? `${leftColHeight}px` : 'none'}
-						class="prose max-w-none p-8 transition-all duration-300 prose-zinc dark:prose-invert prose-headings:font-bold prose-h1:mt-0 prose-h1:mb-6 prose-h1:text-3xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-base prose-p:leading-7 prose-a:text-primary prose-a:underline hover:prose-a:text-primary/80 prose-strong:font-semibold prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:before:content-[''] prose-code:after:content-[''] prose-ul:my-4 prose-li:my-2 prose-hr:my-8 prose-hr:border-border"
-					>
-						<ExtendedDescription />
+					<div class="relative">
+						<div
+							style:max-height={isExpanded ? `${fullHeight}px` : `${leftColHeight}px`}
+							class="overflow-hidden transition-all duration-700 ease-in-out"
+						>
+							<div
+								bind:this={descColRef}
+								class="prose max-w-none p-8 prose-zinc dark:prose-invert prose-headings:font-bold prose-h1:mt-0 prose-h1:mb-6 prose-h1:text-3xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:text-2xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:text-xl prose-p:text-base prose-p:leading-7 prose-a:text-primary prose-a:underline hover:prose-a:text-primary/80 prose-strong:font-semibold prose-code:rounded prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:font-mono prose-code:text-sm prose-code:before:content-[''] prose-code:after:content-[''] prose-ul:my-4 prose-li:my-2 prose-hr:my-8 prose-hr:border-border"
+							>
+								<ExtendedDescription />
+							</div>
+						</div>
+
+						{#if needsExpansion && !isExpanded}
+							<div
+								class="pointer-events-none absolute inset-x-0 -bottom-1 h-32 rounded-xl bg-linear-to-t from-background via-background/95 to-transparent backdrop-blur-[px] transition-opacity duration-700"
+							></div>
+						{/if}
+
+						{#if needsExpansion}
+							<div class="flex justify-center {isExpanded ? 'pt-4 pb-4' : 'absolute inset-x-0 bottom-4'}">
+								<Button
+									variant="default"
+									onclick={() => (isExpanded = !isExpanded)}
+									class="relative z-10 gap-2 shadow-lg backdrop-blur-sm transition-all duration-300"
+								>
+									{isExpanded ? 'Show Less' : 'See More'}
+									<div
+										class="transition-transform duration-300"
+										style:transform={isExpanded ? 'rotate(0deg)' : 'rotate(180deg)'}
+									>
+										<ChevronUp class="size-4" />
+									</div>
+								</Button>
+							</div>
+						{/if}
 					</div>
 				</CardContent>
-
-				{#if needsExpansion && !isExpanded}
-					<div
-						class="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-linear-to-t from-background via-background/80 to-transparent"
-					></div>
-				{/if}
-
-				{#if needsExpansion}
-					<div class="flex justify-center pb-4 {!isExpanded ? 'absolute inset-x-0 bottom-0' : 'pt-4'}">
-						<Button
-							variant="default"
-							onclick={() => (isExpanded = !isExpanded)}
-							class="relative z-10 gap-2  backdrop-blur-sm"
-						>
-							{isExpanded ? 'Show Less' : 'See More'}
-							{#if isExpanded}
-								<ChevronUp class="size-4" />
-							{:else}
-								<ChevronDown class="size-4" />
-							{/if}
-						</Button>
-					</div>
-				{/if}
 			</Card>
 		</div>
 	</div>
@@ -331,8 +339,8 @@
 					e.stopPropagation();
 					navigateImage('prev');
 				}}
-				class="absolute left-4 z-10 rounded-full border border-white/30 bg-black/60 p-3 shadow-lg backdrop-blur-sm transition-all hover:border-white/50 hover:bg-black/80"
 				aria-label="Previous image"
+				class="absolute left-4 z-10 rounded-full border border-white/30 bg-black/60 p-3 shadow-lg backdrop-blur-sm transition-all hover:border-white/50 hover:bg-black/80"
 			>
 				<ChevronLeft class="size-6 cursor-pointer text-white" />
 			</button>
@@ -342,8 +350,8 @@
 					e.stopPropagation();
 					navigateImage('next');
 				}}
-				class="absolute right-4 z-10 rounded-full border border-white/30 bg-black/60 p-3 shadow-lg backdrop-blur-sm transition-all hover:border-white/50 hover:bg-black/80"
 				aria-label="Next image"
+				class="absolute right-4 z-10 rounded-full border border-white/30 bg-black/60 p-3 shadow-lg backdrop-blur-sm transition-all hover:border-white/50 hover:bg-black/80"
 			>
 				<ChevronRight class="size-6 cursor-pointer text-white" />
 			</button>
