@@ -1,0 +1,32 @@
+# The Problem It Solves
+
+Modern yoga learners often struggle to practice safely and consistently without expert supervision. YogaSense addresses the key gaps in traditional and app-based yoga experiences:
+
+- **Lack of Real-Time Guidance:** Most yoga apps rely on pre-recorded videos, offering no feedback on incorrect posture or alignment, which can lead to ineffective practice or injuries.
+
+- **Injury Risk Due to Poor Form:** Beginners and even intermediate practitioners frequently perform poses incorrectly without realizing it, increasing the risk of long-term strain or injury.
+
+- **One-Size-Fits-All Routines:** Generic routines fail to adapt to individual fitness levels, flexibility, goals, or progress over time.
+
+- **Low Engagement & Consistency:** Without immersion, motivation, or accountability, users often drop their practice after a short period.
+
+- **Limited Accessibility to Experts:** Personal yoga trainers are expensive and not always available, making high-quality guidance inaccessible to many.
+
+YogaSense solves these problems by combining **AI-powered real-time pose correction**, **personalized routines**, and an **immersive AR-driven environment**, enabling users to practice yoga **safely, effectively, and consistently—anytime, anywhere**, without needing a physical instructor.
+
+---
+
+# Challenges we ran into
+
+Building YogaSense within a tight 24-hour hackathon window came with several technical and architectural challenges:
+
+- **MediaPipe Pose Detection Integration:**  
+  Achieving accurate and stable real-time pose detection using MediaPipe was challenging, especially under varying lighting conditions and camera angles. Fine-tuning joint tracking and minimizing latency were critical to ensure reliable pose correction without breaking the user experience.
+
+- **Efficient Model Loading with AR:**  
+  Running AI pose detection alongside an immersive AR environment was resource-intensive. Managing memory usage and ensuring smooth performance required careful optimization and efficient loading of models to avoid frame drops and long initialization times.
+
+- **First-Time Tool (Function) Calling:**  
+  We explored tool/function calling for the first time to enable intelligent interactions and dynamic responses. Understanding the execution flow, structuring inputs and outputs correctly, and handling edge cases was initially tricky—but once implemented, it worked reliably and unlocked powerful capabilities.
+
+Despite these challenges, overcoming them significantly improved the robustness, performance, and intelligence of YogaSense, making the final product both scalable and production-ready.
