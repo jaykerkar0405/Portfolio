@@ -17,7 +17,8 @@ import {
 	siTypescript,
 	siPostgresql,
 	siCloudinary,
-	siTailwindcss
+	siTailwindcss,
+	siGooglegemini
 } from 'simple-icons';
 import type { Project } from './types';
 
@@ -128,6 +129,39 @@ export const projects: Project[] = [
 		githubLink: 'https://github.com/Crew-object-Object/RepWise',
 		shortDescription: 'AI fitness app with pose detection, macros & PVP',
 		techStack: [siSvelte, siMediapipe, siTypescript, siPrisma, siPostgresql, siTailwindcss, siShadcnui, siWebrtc],
+		teamMembers: [
+			{
+				githubUsername: 'jaykerkar0405'
+			},
+			{
+				githubUsername: 'WhyAsh5114'
+			},
+			{
+				githubUsername: 'sundaram123krishnan'
+			},
+			{
+				githubUsername: 'kryyo1441'
+			}
+		]
+	},
+	{
+		featured: false,
+		id: 'yoga-sense',
+		title: 'YogaSense',
+		hackathonId: 'err-404-6.0',
+		deployedLink: 'https://yogasense.vercel.app',
+		githubLink: 'https://github.com/Crew-object-Object/YogaSense',
+		shortDescription: 'AI yoga app with real-time pose correction & AR',
+		techStack: [
+			siPrisma,
+			siShadcnui,
+			siNextdotjs,
+			siMediapipe,
+			siTypescript,
+			siPostgresql,
+			siTailwindcss,
+			siGooglegemini
+		],
 		teamMembers: [
 			{
 				githubUsername: 'jaykerkar0405'
