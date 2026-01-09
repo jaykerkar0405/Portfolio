@@ -146,6 +146,27 @@ export const projects: Project[] = [
 	},
 	{
 		featured: false,
+		id: 'code-collab',
+		title: 'CodeCollab',
+		hackathonId: 'need-for-code-4.0',
+		deployedLink: 'https://codecollab-mu.vercel.app',
+		githubLink: 'https://github.com/Crew-object-Object/NFC4_-object-Object-',
+		shortDescription: 'Collaborative coding interviews with AI-powered insights',
+		techStack: [siPrisma, siSvelte, siShadcnui, siMediapipe, siTypescript, siPostgresql, siTailwindcss],
+		teamMembers: [
+			{
+				githubUsername: 'jaykerkar0405'
+			},
+			{
+				githubUsername: 'WhyAsh5114'
+			},
+			{
+				githubUsername: 'sundaram123krishnan'
+			}
+		]
+	},
+	{
+		featured: false,
 		id: 'yoga-sense',
 		title: 'YogaSense',
 		hackathonId: 'err-404-6.0',
