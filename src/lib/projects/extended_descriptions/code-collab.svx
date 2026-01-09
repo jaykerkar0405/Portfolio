@@ -1,0 +1,31 @@
+# The problem it solves
+
+- **Fragmented Interview Tools**  
+  Technical interviews often require multiple disconnected tools for scheduling, coding, video calls, and evaluation.
+
+- **Lack of Real-Time Collaboration**  
+  Many platforms fail to provide smooth, low-latency collaborative coding with proper version tracking.
+
+- **Unfair or Incomplete Evaluation**  
+  Manual scoring and limited analytics make it hard to accurately assess problem-solving skills and performance.
+
+- **Cheating & Integrity Issues**  
+  Existing solutions lack strong, real-time anti-cheat mechanisms during remote interviews.
+
+- **Poor Interview Experience**  
+  Candidates and interviewers face friction due to unstable setups, accessibility gaps, and delayed feedback.
+
+CodeCollab solves these issues by offering a unified, real-time, and AI-assisted interview platform with built-in collaboration, monitoring, and intelligent evaluation.
+
+---
+
+# Challenges we ran into
+
+- **WebRTC Video Call Integration**  
+  Integrating real-time video calls using WebRTC within an already complex system was challenging, especially while ensuring stability, low latency, and smooth coexistence with live coding and monitoring features.
+
+- **Tool Calling with Local LLM Setup**  
+  Implementing tool/function calling using LM Studio in a local environment was new and non-trivial. Managing model behavior, request routing, and reliable responses required multiple iterations and careful prompt design.
+
+- **Real-Time Code Synchronization**  
+  Achieving seamless real-time code sync between interviewer and candidate was challenging. Using Tiptap for collaborative editing required precise state management to ensure consistency, performance, and conflict-free updates.
