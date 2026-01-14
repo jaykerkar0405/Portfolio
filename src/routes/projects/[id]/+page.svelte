@@ -9,10 +9,10 @@
 		Layers,
 		ChevronUp,
 		ChevronLeft,
-		ChevronDown,
 		ChevronRight,
 		ExternalLink
 	} from 'lucide-svelte';
+	import { fade } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import * as Carousel from '$lib/components/ui/carousel';
@@ -88,7 +88,7 @@
 </svelte:head>
 
 <div class="container mx-auto max-w-7xl px-4 py-12">
-	<div class="mb-8">
+	<div class="mb-8" in:fade={{ duration: 300, delay: 100 }}>
 		<div class="flex flex-wrap items-start justify-between gap-4">
 			<div class="flex items-start gap-4">
 				<img
@@ -147,7 +147,7 @@
 	</div>
 
 	{#if screenshots.length > 0}
-		<div class="mb-8">
+		<div class="mb-8" in:fade={{ duration: 300, delay: 200 }}>
 			<Carousel.Root opts={{ align: 'start' }} class="w-full">
 				<Carousel.Content class="-ml-2 md:-ml-4">
 					{#each screenshots as screenshot, i}
@@ -171,7 +171,7 @@
 	{/if}
 
 	<div class="grid grid-cols-1 items-start gap-6 lg:grid-cols-3">
-		<div bind:this={leftColRef} class="flex flex-col gap-5">
+		<div bind:this={leftColRef} class="flex flex-col gap-5" in:fade={{ duration: 300, delay: 250 }}>
 			{#if project.videoLink}
 				<Card>
 					<CardHeader>
@@ -267,7 +267,7 @@
 			</Card>
 		</div>
 
-		<div class="lg:col-span-2">
+		<div class="lg:col-span-2" in:fade={{ duration: 300, delay: 300 }}>
 			<Card class="relative py-1">
 				<CardContent class="p-0">
 					<div class="relative">
