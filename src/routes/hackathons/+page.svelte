@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	import { Card, CardContent, CardHeader, CardTitle } from '$lib/components/ui/card';
 </script>
 
@@ -8,14 +9,12 @@
 </svelte:head>
 
 <main class="mx-auto max-w-7xl px-6 py-12 md:px-16 xl:px-6">
-	<div class="mb-12">
+	<div class="mb-12" in:fade={{ duration: 300, delay: 100 }}>
 		<h1 class="mb-4 text-4xl font-bold tracking-tight">Hackathons</h1>
-		<p class="text-lg text-muted-foreground">
-			My journey through various hackathons and competitive coding events
-		</p>
+		<p class="text-lg text-muted-foreground">My journey through various hackathons and competitive coding events</p>
 	</div>
 
-	<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+	<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" in:fade={{ duration: 300, delay: 200 }}>
 		<Card>
 			<CardHeader>
 				<CardTitle>Hackathon Coming Soon</CardTitle>
