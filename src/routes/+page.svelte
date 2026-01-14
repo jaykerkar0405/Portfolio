@@ -13,6 +13,7 @@
 		siTailwindcss
 	} from 'simple-icons';
 	import { onMount } from 'svelte';
+	import { fade } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { Card, CardContent } from '$lib/components/ui/card';
@@ -104,41 +105,45 @@
 <div class="container mx-auto max-w-7xl px-4 py-12">
 	<div class="lg:flex lg:flex-col">
 		<div class="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-			<Card>
-				<CardContent class="p-8">
-					<h1 class="mb-4 text-4xl font-bold">Hi, I&apos;m Jay Kerkar</h1>
-					<div class="mb-6 flex items-center gap-2 text-muted-foreground">
-						<MapPin class="size-5" />
-						<span>Mumbai, India</span>
-					</div>
-					<p class="text-lg leading-relaxed text-muted-foreground">
-						Full-stack developer specializing in scalable web applications, mobile development, and Web3 solutions.
-						Explore my projects, hackathon wins, and technical expertise in modern frameworks.
-					</p>
-				</CardContent>
-			</Card>
+			<div in:fade={{ duration: 300, delay: 100 }}>
+				<Card>
+					<CardContent class="p-8">
+						<h1 class="mb-4 text-4xl font-bold">Hi, I&apos;m Jay Kerkar</h1>
+						<div class="mb-6 flex items-center gap-2 text-muted-foreground">
+							<MapPin class="size-5" />
+							<span>Mumbai, India</span>
+						</div>
+						<p class="text-lg leading-relaxed text-muted-foreground">
+							Full-stack developer specializing in scalable web applications, mobile development, and Web3 solutions.
+							Explore my projects, hackathon wins, and technical expertise in modern frameworks.
+						</p>
+					</CardContent>
+				</Card>
+			</div>
 
-			<Card class="flex h-full flex-col py-0">
-				<CardContent class="flex flex-1 flex-col p-0">
-					<div class="flex h-full flex-col overflow-hidden rounded-lg bg-secondary/30">
-						<div class="flex items-center gap-2 border-b border-border bg-secondary/50 px-4 py-3">
-							<div class="size-3 rounded-full bg-red-500"></div>
-							<div class="size-3 rounded-full bg-yellow-500"></div>
-							<div class="size-3 rounded-full bg-green-500"></div>
+			<div in:fade={{ duration: 300, delay: 200 }}>
+				<Card class="flex h-full flex-col py-0">
+					<CardContent class="flex flex-1 flex-col p-0">
+						<div class="flex h-full flex-col overflow-hidden rounded-lg bg-secondary/30">
+							<div class="flex items-center gap-2 border-b border-border bg-secondary/50 px-4 py-3">
+								<div class="size-3 rounded-full bg-red-500"></div>
+								<div class="size-3 rounded-full bg-yellow-500"></div>
+								<div class="size-3 rounded-full bg-green-500"></div>
+							</div>
+							<div class="flex-1 p-4 md:p-8">
+								<pre
+									class="wrap-break-words min-h-35 font-mono text-xs leading-relaxed whitespace-pre-wrap text-foreground sm:text-sm">{displayedText}<span
+										class="animate-pulse">▊</span
+									></pre>
+							</div>
 						</div>
-						<div class="flex-1 p-4 md:p-8">
-							<pre
-								class="wrap-break-words min-h-35 font-mono text-xs leading-relaxed whitespace-pre-wrap text-foreground sm:text-sm">{displayedText}<span
-									class="animate-pulse">▊</span
-								></pre>
-						</div>
-					</div>
-				</CardContent>
-			</Card>
+					</CardContent>
+				</Card>
+			</div>
 		</div>
 
 		<div class="space-y-6 lg:space-y-8">
-			<div class="flex justify-center">
+			<div class="flex justify-center" in:fade={{ duration: 300, delay: 250 }}>
 				<div class="w-full overflow-x-auto rounded-2xl border border-border bg-card">
 					<Tooltip.Provider>
 						<div class="flex min-h-20 items-center justify-between px-4">
@@ -169,7 +174,7 @@
 				</div>
 			</div>
 
-			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4" in:fade={{ duration: 300, delay: 300 }}>
 				<a
 					target="_blank"
 					rel="noopener noreferrer"
@@ -263,7 +268,7 @@
 		</div>
 	</div>
 
-	<div id="about" class="mt-12 lg:mt-0">
+	<div id="about" class="mt-12 lg:mt-0" in:fade={{ duration: 300, delay: 150 }}>
 		<h2 class="mb-8 text-3xl font-bold">About</h2>
 		<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 			<Card>
