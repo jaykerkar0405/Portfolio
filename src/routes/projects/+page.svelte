@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fade } from 'svelte/transition';
 	import { projects } from '$lib/projects';
 	import ProjectCard from '$lib/components/project-card.svelte';
 
@@ -12,24 +13,28 @@
 
 <div class="container mx-auto max-w-7xl px-4 py-12">
 	{#if featuredProjects.length > 0}
-		<section class="mb-16">
+		<section class="mb-16" in:fade={{ duration: 300, delay: 150 }}>
 			<h2 class="mb-8 text-[1.6875rem] font-bold md:text-3xl">Featured Projects</h2>
 
 			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-				{#each featuredProjects as project (project.id)}
-					<ProjectCard {project} />
+				{#each featuredProjects as project, i (project.id)}
+					<div in:fade={{ duration: 300, delay: 200 + i * 50 }}>
+						<ProjectCard {project} />
+					</div>
 				{/each}
 			</div>
 		</section>
 	{/if}
 
 	{#if otherProjects.length > 0}
-		<section class="mb-16">
+		<section class="mb-16" in:fade={{ duration: 300, delay: 150 }}>
 			<h2 class="mb-8 text-[1.6875rem] font-bold md:text-3xl">Other Projects</h2>
 
 			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-				{#each otherProjects as project (project.id)}
-					<ProjectCard {project} />
+				{#each otherProjects as project, i (project.id)}
+					<div in:fade={{ duration: 300, delay: 200 + i * 50 }}>
+						<ProjectCard {project} />
+					</div>
 				{/each}
 			</div>
 		</section>
