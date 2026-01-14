@@ -14,7 +14,7 @@
 	};
 </script>
 
-<Card class="flex flex-col overflow-hidden py-3">
+<Card class="flex h-full flex-col overflow-hidden py-3">
 	<CardContent class="flex flex-1 flex-col gap-5.5 p-6">
 		<div class="flex items-start justify-between gap-4">
 			<div class="flex items-start gap-3">
@@ -78,9 +78,9 @@
 			</Tooltip.Provider>
 		</div>
 
-		<div class="flex items-center gap-4">
+		<div class="mt-auto flex items-center gap-4">
 			{#if project.hackathonId}
-				<a href="/hackathons/{project.hackathonId}">
+				<a href="/hackathons/{project.hackathonId}" data-sveltekit-noscroll>
 					<Button variant="outline" class="gap-2">
 						<Zap class="size-4" />
 						Built at hackathon
@@ -88,7 +88,7 @@
 				</a>
 			{/if}
 
-			<a href="/projects/{project.id}" class="ml-auto">
+			<a href="/projects/{project.id}" class="ml-auto" data-sveltekit-noscroll>
 				<Button class="gap-2" aria-label="View {project.title} details">
 					View
 					<ArrowRight class="size-4" />
