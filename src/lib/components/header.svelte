@@ -1,7 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/state';
 	import { toggleMode } from 'mode-watcher';
-	import { scale } from 'svelte/transition';
 	import SunIcon from '@lucide/svelte/icons/sun';
 	import MoonIcon from '@lucide/svelte/icons/moon';
 	import { Button } from '$lib/components/ui/button';
@@ -29,9 +28,7 @@
 				{#each navigationItems as item (item.href)}
 					<a
 						href={item.href}
-						class="px-5 py-2.5 text-base font-medium transition-colors duration-150 ease-out hover:text-foreground {isActive(
-							item.href
-						)
+						class="px-5 py-2.5 text-base font-medium hover:text-foreground {isActive(item.href)
 							? 'border-b-[1.75px] border-foreground text-foreground'
 							: 'text-muted-foreground hover:border-b-[1.75px] hover:border-foreground'}"
 					>
@@ -41,14 +38,8 @@
 			</nav>
 
 			<Button onclick={toggleMode} variant="outline" size="icon" class="relative">
-				{#key page.url.pathname}
-					<span in:scale={{ duration: 200 }}>
-						<SunIcon class="size-[1.15rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-					</span>
-					<span in:scale={{ duration: 200 }} class="absolute">
-						<MoonIcon class="size-[1.15rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-					</span>
-				{/key}
+				<SunIcon class="size-[1.15rem] scale-100 rotate-0 dark:scale-0 dark:-rotate-90" />
+				<MoonIcon class="absolute size-[1.15rem] scale-0 rotate-90 dark:scale-100 dark:rotate-0" />
 				<span class="sr-only">Toggle theme</span>
 			</Button>
 		</div>
@@ -60,9 +51,7 @@
 		{#each navigationItems as item (item.href)}
 			<a
 				href={item.href}
-				class="inline-flex flex-col items-center justify-center gap-0.5 px-5 py-2 transition-colors duration-150 ease-out {isActive(
-					item.href
-				)
+				class="inline-flex flex-col items-center justify-center gap-0.5 px-5 py-2 {isActive(item.href)
 					? 'bg-primary text-primary-foreground'
 					: 'hover:bg-primary hover:text-primary-foreground'}"
 			>

@@ -56,7 +56,7 @@
 						<Tooltip.Root>
 							<Tooltip.Trigger
 								aria-label={tech.title}
-								class="flex size-9 shrink-0 items-center justify-center rounded-lg transition-transform hover:scale-110"
+								class="flex size-9 shrink-0 items-center justify-center rounded-lg hover:scale-110"
 							>
 								<svg
 									width="26"
