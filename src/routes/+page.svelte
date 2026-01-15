@@ -13,7 +13,6 @@
 		siTailwindcss
 	} from 'simple-icons';
 	import { onMount } from 'svelte';
-	import { fade } from 'svelte/transition';
 	import { Button } from '$lib/components/ui/button';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import { Card, CardContent } from '$lib/components/ui/card';
@@ -105,7 +104,7 @@
 <div class="container mx-auto max-w-7xl px-4 py-12">
 	<div class="lg:flex lg:flex-col">
 		<div class="mb-6 grid grid-cols-1 gap-6 lg:grid-cols-2">
-			<div in:fade={{ duration: 300, delay: 100 }}>
+			<div>
 				<Card>
 					<CardContent class="p-8">
 						<h1 class="mb-4 text-4xl font-bold">Hi, I&apos;m Jay Kerkar</h1>
@@ -121,7 +120,7 @@
 				</Card>
 			</div>
 
-			<div in:fade={{ duration: 300, delay: 200 }}>
+			<div>
 				<Card class="flex h-full flex-col py-0">
 					<CardContent class="flex flex-1 flex-col p-0">
 						<div class="flex h-full flex-col overflow-hidden rounded-lg bg-secondary/30">
@@ -143,7 +142,7 @@
 		</div>
 
 		<div class="space-y-6 lg:space-y-8">
-			<div class="flex justify-center" in:fade={{ duration: 300, delay: 250 }}>
+			<div class="flex justify-center">
 				<div class="w-full overflow-x-auto rounded-2xl border border-border bg-card">
 					<Tooltip.Provider>
 						<div class="flex min-h-20 items-center justify-between px-4">
@@ -151,7 +150,7 @@
 								<Tooltip.Root>
 									<Tooltip.Trigger
 										aria-label={tech.name}
-										class="flex size-14 shrink-0 items-center justify-center rounded-lg transition-transform hover:scale-110"
+										class="flex size-14 shrink-0 items-center justify-center rounded-lg hover:scale-110"
 									>
 										<svg
 											width="40"
@@ -174,12 +173,12 @@
 				</div>
 			</div>
 
-			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4" in:fade={{ duration: 300, delay: 300 }}>
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
 				<a
 					target="_blank"
 					rel="noopener noreferrer"
 					href="https://github.com/jaykerkar0405"
-					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6 transition-colors"
+					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6"
 				>
 					<svg
 						width="24"
@@ -202,7 +201,7 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					href="https://in.linkedin.com/in/jaykerkar0405"
-					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6 transition-colors"
+					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6"
 				>
 					<svg
 						width="24"
@@ -225,7 +224,7 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					href="https://x.com/jaykerkar0405"
-					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6 transition-colors"
+					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6"
 				>
 					<svg width="24" height="24" fill="currentColor" viewBox={XIcon.viewBox} xmlns="http://www.w3.org/2000/svg">
 						{#each XIcon.paths as d (d)}
@@ -242,7 +241,7 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					href="https://leetcode.com/u/jaykerkar0405"
-					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6 transition-colors"
+					class="flex items-center gap-4 rounded-lg border border-border bg-card p-6"
 				>
 					<svg
 						width="24"
@@ -268,7 +267,7 @@
 		</div>
 	</div>
 
-	<div id="about" class="mt-12 lg:mt-0" in:fade={{ duration: 300, delay: 150 }}>
+	<div id="about" class="mt-12 lg:mt-0">
 		<h2 class="mb-8 text-3xl font-bold">About</h2>
 		<div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
 			<Card>
